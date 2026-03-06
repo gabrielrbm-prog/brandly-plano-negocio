@@ -1,1655 +1,820 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Brandly - Plataforma de Creator Economy com Marketing de Rede + Gamificacao. Plano de Negocio Completo.">
-  <meta name="theme-color" content="#1D45D8">
-  <meta property="og:title" content="Brandly | Plano de Negocio">
-  <meta property="og:description" content="A plataforma que transforma creators em profissionais com renda garantida.">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <title>Brandly | Plano de Negocio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Brandly - Plataforma de Creator Economy. Plano de Negocio.">
+<meta name="theme-color" content="#1D45D8">
+<title>Brandly | Plano de Negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --accent:#1D45D8;--cyan:#00DFFF;
+  --bg:#050508;--bg2:#0A0A0F;--bg3:#0F0F14;--bg4:#16161D;
+  --t1:#F5F0E8;--t2:#B0AAA0;--t3:#7A7468;
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+section[id]{scroll-margin-top:80px}
+h1,h2,h3,.font-h{font-family:'Space Grotesk',sans-serif}
+a{text-decoration:none;color:inherit}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+/* Scroll Progress */
+#progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));width:0;z-index:9999;transition:none}
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Space Grotesk', 'sans-serif'],
-            body: ['Inter', '-apple-system', 'sans-serif'],
-          },
-          colors: {
-            accent: { DEFAULT: '#1D45D8', hover: '#4A6FFF', dim: '#0F2A8A', cyan: '#00DFFF' },
-            surface: { 0: '#050508', 1: '#0A0A0F', 2: '#0F0F14', 3: '#16161D', 4: '#1E1E28' },
-          }
-        }
-      }
-    }
-  </script>
+/* Nav */
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;transition:all .3s}
+nav.scrolled{background:rgba(5,5,8,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.85rem;color:var(--t2);transition:color .2s}
+.nav-links a:hover{color:var(--t1)}
+.nav-brand{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.15rem;display:flex;align-items:center;gap:10px}
+.nav-logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#4A6FFF);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px}
 
-  <style>
-    :root {
-      --accent: #1D45D8;
-      --accent-hover: color-mix(in srgb, #1D45D8, white 20%);
-      --accent-dim: color-mix(in srgb, #1D45D8, black 30%);
-      --accent-glow: color-mix(in srgb, #1D45D8, transparent 70%);
-      --accent-glow-md: color-mix(in srgb, #1D45D8, transparent 55%);
-      --accent-glow-strong: color-mix(in srgb, #1D45D8, transparent 40%);
-      --accent-border: color-mix(in srgb, #1D45D8, transparent 80%);
-      --accent-glass: color-mix(in srgb, #1D45D8, transparent 97%);
-      --cyan: #00DFFF;
-      --cyan-glow: color-mix(in srgb, #00DFFF, transparent 70%);
-      --bg-0: #050508;
-      --bg-1: #0A0A0F;
-      --bg-2: #0F0F14;
-      --bg-3: #16161D;
-      --bg-4: #1E1E28;
-      --text-1: #F5F0E8;
-      --text-2: #B0AAA0;
-      --text-3: #7A7468;
-      --border-subtle: rgba(255,255,255,0.05);
-      --font-heading: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', -apple-system, sans-serif;
-      --section-py: clamp(80px, 12vh, 160px);
-      --max-width: 1280px;
-    }
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-weight:600;font-size:.88rem;transition:all .3s;cursor:pointer;border:none}
+.btn-p{background:linear-gradient(135deg,var(--accent),#3366FF);color:#fff;box-shadow:0 0 30px rgba(29,69,216,.3)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(29,69,216,.4)}
+.btn-o{border:1px solid rgba(255,255,255,.12);color:var(--t1);background:transparent}
+.btn-o:hover{border-color:var(--accent);background:rgba(29,69,216,.08)}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body {
-      font-family: var(--font-body);
-      background: var(--bg-0);
-      color: var(--text-1);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-    section[id] { scroll-margin-top: 80px; }
-    section[id] { scroll-margin-top: 80px; }
+/* Glass card */
+.glass{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;backdrop-filter:blur(12px)}
+.glass-a{background:rgba(29,69,216,.05);border:1px solid rgba(29,69,216,.15);border-radius:16px}
 
-    /* Grain */
-    .grain::after {
-      content: '';
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 9998; opacity: 0.022;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
+/* Gradient text */
+.grad{background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-warm{background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-    /* Scroll Progress */
-    .scroll-progress {
-      position: fixed; top: 0; left: 0; height: 2px; z-index: 10000;
-      background: linear-gradient(90deg, var(--accent), var(--cyan));
-      width: 0%; transition: none;
-    }
+/* Section */
+.sec{padding:clamp(60px,10vh,120px) 0}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+.label{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}
 
-    /* Preloader */
-    #loader {
-      position: fixed; inset: 0; z-index: 10000;
-      background: var(--bg-0);
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 24px;
-    }
-    .loader-counter {
-      font-family: var(--font-heading);
-      font-size: clamp(4rem, 12vw, 9rem);
-      font-weight: 300; letter-spacing: -0.04em;
-      color: var(--text-1); line-height: 1;
-    }
-    .loader-label {
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--accent); opacity: 0.6;
-    }
-    .loader-bar {
-      position: fixed; bottom: 0; left: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent-dim), var(--accent), var(--cyan));
-      transform-origin: left;
-    }
-    .loader-blinds {
-      position: fixed; inset: 0; display: flex;
-      z-index: 10001; pointer-events: none;
-    }
-    .loader-blind { flex: 1; background: var(--bg-0); transform-origin: top; }
+/* Grid helpers */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+@media(max-width:1024px){.g3,.g4,.g5{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}}
 
-    /* Nav */
-    nav { backdrop-filter: blur(0); transition: all 0.4s; }
-    nav.scrolled { backdrop-filter: blur(20px); background: rgba(5,5,8,0.8); border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .nav-link { color: var(--text-2); font-size: 0.875rem; transition: color 0.3s; position: relative; }
-    .nav-link:hover { color: var(--text-1); }
-    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s; }
-    .nav-link:hover::after { width: 100%; }
+/* Reveal animation */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.rv.show{opacity:1;transform:translateY(0)}
 
-    /* Hamburger */
-    .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--text-1); transition: all 0.3s; }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
-    .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.23,1,0.32,1); }
-    .mobile-menu.open { max-height: 300px; }
+/* Orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
 
-    /* Buttons */
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 32px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent), var(--cyan) 30%));
-      color: #fff; font-weight: 600; font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
-      box-shadow: 0 0 30px var(--accent-glow);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--accent-glow-md); }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 32px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.12); color: var(--text-1);
-      font-weight: 500; font-size: 0.9rem; text-decoration: none;
-      transition: all 0.3s;
-    }
-    .btn-outline:hover { border-color: var(--accent); background: rgba(29,69,216,0.08); }
+/* Ticker */
+.ticker{overflow:hidden;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:16px 0}
+.ticker-track{display:flex;width:max-content;animation:tick 45s linear infinite}
+.ticker-track span{font-size:.8rem;font-weight:600;letter-spacing:.1em;white-space:nowrap;opacity:.25;padding:0 32px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* Section Label */
-    .section-label {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--cyan);
-    }
+/* Step number */
+.step-n{font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:400;line-height:.9;background:linear-gradient(180deg,var(--accent),rgba(29,69,216,.15));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-    /* Glass */
-    .glass {
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(24px) saturate(150%);
-      -webkit-backdrop-filter: blur(24px) saturate(150%);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .glass-accent {
-      background: color-mix(in srgb, var(--accent), transparent 95%);
-      backdrop-filter: blur(24px);
-      border: 1px solid var(--accent-border);
-    }
+/* Big number */
+.big-n{font-family:'Space Grotesk',sans-serif;font-size:clamp(4rem,10vw,7rem);font-weight:400;line-height:.8;background:linear-gradient(180deg,rgba(29,69,216,.15),rgba(29,69,216,.03));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;user-select:none;position:absolute;top:-10px;left:-5px}
 
-    /* Gradient Text */
-    .gradient-text {
-      background: linear-gradient(135deg, var(--accent), var(--cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .gradient-text-warm {
-      background: linear-gradient(135deg, #F59E0B, #EF4444);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
+/* Rotating border */
+@property --ba{syntax:'<angle>';initial-value:0deg;inherits:false}
+.rot-b{position:relative;border-radius:16px;overflow:hidden}
+.rot-b::before{content:'';position:absolute;inset:-1px;border-radius:inherit;background:conic-gradient(from var(--ba),transparent 60%,var(--accent) 80%,var(--cyan) 90%,transparent 100%);animation:bspin 4s linear infinite;z-index:0}
+.rot-b::after{content:'';position:absolute;inset:1px;border-radius:inherit;background:var(--bg3);z-index:0}
+.rot-b>*{position:relative;z-index:1}
+@keyframes bspin{to{--ba:360deg}}
 
-    /* Tilt Card */
-    .tilt-card {
-      will-change: transform; transform-style: preserve-3d;
-      transition: transform 0.5s cubic-bezier(0.23,1,0.32,1);
-      position: relative; overflow: hidden;
-    }
-    .tilt-card .shine {
-      position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-      background: radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(255,255,255,0.08) 0%, transparent 50%);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .tilt-card:hover .shine { opacity: 1; }
+/* Table */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{text-align:left;padding:10px 14px;font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);border-bottom:1px solid rgba(255,255,255,.06)}
+.tbl td{padding:12px 14px;font-size:.85rem;color:var(--t2);border-bottom:1px solid rgba(255,255,255,.03)}
+.tbl tr:hover td{background:rgba(255,255,255,.02)}
 
-    /* Rotating Border */
-    @property --border-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-    .rotating-border { position: relative; border-radius: 16px; overflow: hidden; }
-    .rotating-border::before {
-      content: ''; position: absolute; inset: -1px; border-radius: inherit;
-      background: conic-gradient(from var(--border-angle), transparent 60%, var(--accent) 80%, var(--cyan) 90%, transparent 100%);
-      animation: borderSpin 4s linear infinite; z-index: -1;
-    }
-    .rotating-border::after {
-      content: ''; position: absolute; inset: 1px; border-radius: inherit;
-      background: var(--bg-2); z-index: -1;
-    }
-    @keyframes borderSpin { to { --border-angle: 360deg; } }
+/* Timeline */
+.tl-line{position:absolute;left:23px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),var(--cyan),transparent)}
+.tl-dot{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
 
-    /* Step Number */
-    .step-num {
-      font-family: var(--font-heading);
-      font-size: 4.5rem; font-weight: 400; line-height: 0.9;
-      background: linear-gradient(180deg, var(--accent) 0%, color-mix(in srgb, var(--accent), transparent 85%) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
+/* Bar chart */
+.bar{border-radius:4px 4px 0 0;background:linear-gradient(to top,rgba(29,69,216,.5),rgba(0,223,255,.4));transition:height .8s ease}
 
-    /* Big Number */
-    .big-num {
-      font-family: var(--font-heading);
-      font-size: clamp(5rem, 12vw, 9rem);
-      font-weight: 400; line-height: 0.8; letter-spacing: -0.04em;
-      background: linear-gradient(180deg, color-mix(in srgb, var(--accent), transparent 82%) 0%, color-mix(in srgb, var(--accent), transparent 96%) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      user-select: none;
-    }
+/* Hamburger */
+.ham{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer;background:none;border:none}
+.ham span{display:block;width:20px;height:1.5px;background:var(--t1);transition:.3s}
+.ham.on span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.ham.on span:nth-child(2){opacity:0}
+.ham.on span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mob-menu{display:none;flex-direction:column;gap:12px;padding:16px 20px;border-top:1px solid rgba(255,255,255,.05)}
+.mob-menu.open{display:flex}
+.mob-menu a{font-size:.9rem;color:var(--t2);padding:8px 0}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .ham{display:flex}
+}
 
-    /* Glow Effects */
-    .glow-box { box-shadow: 0 0 60px var(--accent-glow); }
-    .glow-border { box-shadow: 0 0 0 1px var(--accent-border), 0 0 40px var(--accent-glow); }
+/* Shimmer */
+.shimmer{background:linear-gradient(90deg,rgba(29,69,216,.5),var(--accent),var(--cyan),var(--accent),rgba(29,69,216,.5));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 4s linear infinite}
+@keyframes shim{to{background-position:200% center}}
 
-    /* Hero Orb */
-    .hero-orb {
-      position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none;
-    }
+/* Grain */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-    /* Accent dot */
-    .accent-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+/* Glow */
+.glow{box-shadow:0 0 60px rgba(29,69,216,.2)}
 
-    /* Section padding */
-    .py-section { padding-top: var(--section-py); padding-bottom: var(--section-py); }
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
 
-    /* Text colors */
-    .text-primary { color: var(--text-1); }
-    .text-secondary { color: var(--text-2); }
-    .text-tertiary { color: var(--text-3); }
-    .accent-text { color: var(--accent); }
-
-    /* Custom Cursor */
-    .custom-cursor { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; mix-blend-mode: difference; }
-    .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; }
-    .cursor-ring { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; position: absolute; top: -16px; left: -16px; transition: transform 0.15s, opacity 0.15s; }
-    .cursor-hover .cursor-ring { transform: scale(1.6); opacity: 0.5; }
-
-    /* Ticker */
-    .ticker-track { display: flex; width: max-content; animation: ticker 50s linear infinite; }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* Persona Cards */
-    .persona-score { font-family: var(--font-heading); font-weight: 700; }
-
-    /* Table styling */
-    .comp-table { width: 100%; border-collapse: separate; border-spacing: 0; }
-    .comp-table th { text-align: left; padding: 12px 16px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .comp-table td { padding: 14px 16px; font-size: 0.875rem; color: var(--text-2); border-bottom: 1px solid rgba(255,255,255,0.03); }
-    .comp-table tr:hover td { background: rgba(255,255,255,0.02); }
-
-    /* Timeline */
-    .timeline-line { position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent), var(--cyan), transparent); }
-
-    /* Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-    /* Focus visible */
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
-
-    /* Shimmer text */
-    .shimmer-text {
-      background: linear-gradient(90deg, var(--accent-dim), var(--accent), var(--cyan), var(--accent), var(--accent-dim));
-      background-size: 200% auto;
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      animation: shimmerText 4s linear infinite;
-    }
-    @keyframes shimmerText { to { background-position: 200% center; } }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-0); }
-    ::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
-  </style>
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
 </head>
-<body class="grain">
+<body>
 
-<!-- PRELOADER -->
-<div id="loader">
-  <div class="loader-label">Brandly</div>
-  <div class="loader-counter" id="loaderCounter">0</div>
-  <div class="loader-bar" id="loaderBar" style="width:0%"></div>
-</div>
-<div class="loader-blinds" id="loaderBlinds">
-  <div class="loader-blind"></div><div class="loader-blind"></div>
-  <div class="loader-blind"></div><div class="loader-blind"></div>
-  <div class="loader-blind"></div>
-</div>
+<!-- Progress -->
+<div id="progress"></div>
 
-<!-- CUSTOM CURSOR -->
-<div class="custom-cursor" id="customCursor">
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-</div>
-
-<!-- SCROLL PROGRESS -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- NAV -->
-<nav class="fixed top-0 left-0 w-full z-50" id="navbar">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-3" aria-label="Brandly">
-      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accent-cyan flex items-center justify-center">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h6c3.3 0 6 2.7 6 6s-2.7 6-6 6H4V4z" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M4 16h7c3.3 0 6-2.7 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/><path d="M16 8c2.2 0 4 1.8 4 4s-1.8 4-4 4" stroke="#00DFFF" stroke-width="2" stroke-linecap="round"/></svg>
-      </div>
-      <span class="font-heading text-lg font-semibold">Brandly</span>
-    </a>
-    <div class="hidden lg:flex items-center gap-8">
-      <a href="#problema" class="nav-link">Problema</a>
-      <a href="#solucao" class="nav-link">Solucao</a>
-      <a href="#numeros" class="nav-link">Numeros</a>
-      <a href="#compensacao" class="nav-link">Compensacao</a>
-      <a href="#projecoes" class="nav-link">Projecoes</a>
-      <a href="#roadmap" class="nav-link">Roadmap</a>
+<!-- Nav -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand"><div class="nav-logo">B</div> Brandly</a>
+    <div class="nav-links">
+      <a href="#problema">Problema</a>
+      <a href="#solucao">Solucao</a>
+      <a href="#numeros">Numeros</a>
+      <a href="#compensacao">Compensacao</a>
+      <a href="#projecoes">Projecoes</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#cta" class="btn btn-p" style="padding:10px 20px;font-size:.8rem">Saiba Mais</a>
     </div>
-    <div class="flex items-center gap-4">
-      <a href="#cta" class="hidden sm:inline-flex btn-primary text-xs">Saiba Mais</a>
-      <button class="hamburger lg:hidden flex flex-col gap-[5px] p-2" id="hamburgerBtn" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <button class="ham" id="hamBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
-  <div class="mobile-menu lg:hidden px-5 pb-4" id="mobileMenu">
-    <div class="flex flex-col gap-3 pt-4 border-t border-white/5">
-      <a href="#problema" class="text-sm py-2 text-secondary">Problema</a>
-      <a href="#solucao" class="text-sm py-2 text-secondary">Solucao</a>
-      <a href="#numeros" class="text-sm py-2 text-secondary">Numeros</a>
-      <a href="#compensacao" class="text-sm py-2 text-secondary">Compensacao</a>
-      <a href="#projecoes" class="text-sm py-2 text-secondary">Projecoes</a>
-      <a href="#roadmap" class="text-sm py-2 text-secondary">Roadmap</a>
-      <a href="#cta" class="btn-primary text-xs !py-3 mt-2 text-center">Saiba Mais</a>
-    </div>
+  <div class="mob-menu" id="mobMenu">
+    <a href="#problema">Problema</a>
+    <a href="#solucao">Solucao</a>
+    <a href="#numeros">Numeros</a>
+    <a href="#compensacao">Compensacao</a>
+    <a href="#projecoes">Projecoes</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#cta" class="btn btn-p" style="text-align:center">Saiba Mais</a>
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
-  <canvas id="hero-canvas" class="absolute inset-0 z-0 pointer-events-none"></canvas>
-  <div class="hero-orb" data-parallax="-0.4" style="width:600px;height:600px;background:radial-gradient(circle,rgba(29,69,216,0.15),transparent);top:-10%;right:-10%"></div>
-  <div class="hero-orb" data-parallax="-0.2" style="width:400px;height:400px;background:radial-gradient(circle,rgba(0,223,255,0.1),transparent);bottom:10%;left:-5%"></div>
-
-  <div class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 pt-28 pb-20 text-center">
-    <div class="flex items-center justify-center gap-3 mb-8 hero-badge" style="opacity:0">
-      <div class="h-[1px] w-8 bg-accent/40"></div>
-      <span class="section-label">Plano de Negocio 2026</span>
-      <div class="h-[1px] w-8 bg-accent/40"></div>
+<!-- ===== HERO ===== -->
+<section id="hero" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+  <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(29,69,216,.12),transparent);top:-10%;right:-10%"></div>
+  <div class="orb" style="width:350px;height:350px;background:radial-gradient(circle,rgba(0,223,255,.08),transparent);bottom:10%;left:-5%"></div>
+  <div style="position:relative;z-index:2;max-width:900px;margin:0 auto;padding:120px 20px 80px;text-align:center">
+    <div class="rv" style="margin-bottom:24px">
+      <span class="label">Plano de Negocio 2026</span>
     </div>
-    <h1 class="font-heading text-[clamp(2.8rem,8vw,5.5rem)] leading-[0.92] tracking-tight mb-6">
-      <span class="hero-line block overflow-hidden"><span class="hero-line-inner block" style="color:var(--text-1)">Onde a influencia</span></span>
-      <span class="hero-line block overflow-hidden"><span class="hero-line-inner block shimmer-text">vira marca.</span></span>
+    <h1 class="rv" style="font-size:clamp(2.5rem,7vw,5rem);line-height:.92;letter-spacing:-.02em;margin-bottom:24px">
+      Onde a influencia<br><span class="shimmer">vira marca.</span>
     </h1>
-    <p class="text-lg leading-relaxed mb-10 max-w-2xl mx-auto text-secondary hero-desc" style="opacity:0">
+    <p class="rv" style="font-size:1.1rem;color:var(--t2);max-width:640px;margin:0 auto 40px;line-height:1.7">
       Plataforma SaaS de creator economy que conecta marcas com creators profissionais atraves de renda garantida por producao + comissao por vendas + bonus de rede.
     </p>
-    <div class="flex flex-wrap justify-center gap-4 hero-ctas" style="opacity:0">
-      <a href="#solucao" class="btn-primary magnetic">Explorar o Plano</a>
-      <a href="#numeros" class="btn-outline magnetic">Ver Numeros</a>
+    <div class="rv" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:60px">
+      <a href="#solucao" class="btn btn-p">Explorar o Plano</a>
+      <a href="#numeros" class="btn btn-o">Ver Numeros</a>
     </div>
-
-    <!-- Key metrics ticker -->
-    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 hero-metrics" style="opacity:0">
-      <div class="glass rounded-xl p-5 text-center">
-        <div class="text-2xl font-heading font-bold gradient-text">R$100</div>
-        <div class="text-xs text-secondary mt-1">Garantido/dia por creator</div>
+    <div class="rv g4" style="max-width:700px;margin:0 auto">
+      <div class="glass" style="padding:20px;text-align:center">
+        <div class="font-h grad" style="font-size:1.5rem;font-weight:700">R$100</div>
+        <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Garantido/dia</div>
       </div>
-      <div class="glass rounded-xl p-5 text-center">
-        <div class="text-2xl font-heading font-bold gradient-text">27</div>
-        <div class="text-xs text-secondary mt-1">Roteiros IA por produto</div>
+      <div class="glass" style="padding:20px;text-align:center">
+        <div class="font-h grad" style="font-size:1.5rem;font-weight:700">27</div>
+        <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Roteiros IA</div>
       </div>
-      <div class="glass rounded-xl p-5 text-center">
-        <div class="text-2xl font-heading font-bold gradient-text">30s</div>
-        <div class="text-xs text-secondary mt-1">Edicao automatica/video</div>
+      <div class="glass" style="padding:20px;text-align:center">
+        <div class="font-h grad" style="font-size:1.5rem;font-weight:700">30s</div>
+        <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Edicao/video</div>
       </div>
-      <div class="glass rounded-xl p-5 text-center">
-        <div class="text-2xl font-heading font-bold gradient-text">7</div>
-        <div class="text-xs text-secondary mt-1">Niveis de carreira</div>
+      <div class="glass" style="padding:20px;text-align:center">
+        <div class="font-h grad" style="font-size:1.5rem;font-weight:700">7</div>
+        <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Niveis carreira</div>
       </div>
     </div>
   </div>
-  <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[var(--bg-0)] to-transparent z-10"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--bg),transparent);z-index:3"></div>
 </section>
 
-<!-- ============ TICKER - MARCAS PARCEIRAS ============ -->
-<section class="py-8 overflow-hidden border-y border-white/5">
+<!-- Ticker -->
+<div class="ticker">
   <div class="ticker-track">
-    <div class="flex items-center gap-16 px-8">
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">YAV HEALTH</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">NATIVE</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">FOKA</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">ETF</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">CONECTAR ENERGY</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">VYVA</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">+100 MARCAS</span>
-      <span class="text-[var(--cyan)] text-sm font-semibold tracking-wider whitespace-nowrap opacity-50">BRANDLY</span>
-    </div>
-    <div class="flex items-center gap-16 px-8">
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">YAV HEALTH</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">NATIVE</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">FOKA</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">ETF</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">CONECTAR ENERGY</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">VYVA</span>
-      <span class="text-sm font-semibold tracking-wider whitespace-nowrap opacity-30">+100 MARCAS</span>
-      <span class="text-[var(--cyan)] text-sm font-semibold tracking-wider whitespace-nowrap opacity-50">BRANDLY</span>
-    </div>
+    <span>YAV HEALTH</span><span>NATIVE</span><span>FOKA</span><span>ETF</span><span>CONECTAR ENERGY</span><span>VYVA</span><span style="color:var(--cyan);opacity:.4">+100 MARCAS</span><span>BRANDLY</span>
+    <span>YAV HEALTH</span><span>NATIVE</span><span>FOKA</span><span>ETF</span><span>CONECTAR ENERGY</span><span>VYVA</span><span style="color:var(--cyan);opacity:.4">+100 MARCAS</span><span>BRANDLY</span>
   </div>
-</section>
+</div>
 
-<!-- ============ PROBLEMA ============ -->
-<section class="py-section" id="problema">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">O Problema</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        O paradoxo do <span class="gradient-text-warm">creator moderno</span>
-      </h2>
+<!-- ===== PROBLEMA ===== -->
+<section id="problema" class="sec">
+  <div class="wrap" style="text-align:center">
+    <span class="label rv" style="display:block;margin-bottom:12px">O Problema</span>
+    <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem);margin-bottom:40px">O paradoxo do <span class="grad-warm">creator moderno</span></h2>
+    <div class="rv" style="margin-bottom:40px">
+      <div class="font-h grad-warm" style="font-size:clamp(3.5rem,9vw,7rem);font-weight:700">87%</div>
+      <p style="color:var(--t2);font-size:1.1rem;margin-top:12px">dos creators brasileiros ganham menos de <strong style="color:var(--t1)">R$500/mes</strong></p>
+      <p style="color:var(--t3);font-size:.8rem;margin-top:4px">Fonte: Hotmart 2024</p>
     </div>
-
-    <!-- Big stat -->
-    <div class="text-center mb-16 reveal">
-      <div class="font-heading text-[clamp(4rem,10vw,8rem)] font-bold leading-none gradient-text-warm counter" data-target="87" data-suffix="%">0%</div>
-      <p class="text-secondary text-lg mt-4">dos creators brasileiros ganham menos de <strong class="text-primary">R$500/mes</strong></p>
-      <p class="text-tertiary text-sm mt-2">Fonte: Hotmart 2024</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-      <div class="tilt-card glass rounded-xl p-8 reveal">
-        <div class="shine"></div>
-        <div class="text-4xl mb-4">91%</div>
-        <h3 class="text-lg font-semibold mb-3 text-red-400">Desistem no 1o ano</h3>
-        <p class="text-secondary text-sm leading-relaxed">Burnout criativo e a principal causa. Trabalham muito, ganham pouco ou nada.</p>
+    <div class="g3" style="margin-bottom:40px">
+      <div class="glass rv" style="padding:32px">
+        <div style="font-size:2.5rem;margin-bottom:12px">91%</div>
+        <h3 style="color:#f87171;margin-bottom:8px">Desistem no 1o ano</h3>
+        <p style="color:var(--t2);font-size:.85rem;line-height:1.6">Burnout criativo e a principal causa. Trabalham muito, ganham pouco.</p>
       </div>
-      <div class="tilt-card glass rounded-xl p-8 reveal">
-        <div class="shine"></div>
-        <div class="text-4xl mb-4">0</div>
-        <h3 class="text-lg font-semibold mb-3 text-orange-400">Previsibilidade</h3>
-        <p class="text-secondary text-sm leading-relaxed">Dependem de publis avulsas, algoritmo e tendencias passageiras. Mes bom R$4k, mes ruim R$500.</p>
+      <div class="glass rv" style="padding:32px">
+        <div style="font-size:2.5rem;margin-bottom:12px">0</div>
+        <h3 style="color:#fb923c;margin-bottom:8px">Previsibilidade</h3>
+        <p style="color:var(--t2);font-size:.85rem;line-height:1.6">Dependem de publis avulsas e algoritmo. Mes bom R$4k, mes ruim R$500.</p>
       </div>
-      <div class="tilt-card glass rounded-xl p-8 reveal">
-        <div class="shine"></div>
-        <div class="text-4xl mb-4">GAP</div>
-        <h3 class="text-lg font-semibold mb-3 text-yellow-400">Ninguem resolve</h3>
-        <p class="text-secondary text-sm leading-relaxed">Marketplaces apenas conectam. Cursos apenas ensinam. Ninguem garante renda por producao.</p>
+      <div class="glass rv" style="padding:32px">
+        <div style="font-size:2.5rem;margin-bottom:12px">GAP</div>
+        <h3 style="color:#facc15;margin-bottom:8px">Ninguem resolve</h3>
+        <p style="color:var(--t2);font-size:.85rem;line-height:1.6">Marketplaces conectam. Cursos ensinam. Ninguem garante renda por producao.</p>
       </div>
     </div>
-
-    <!-- Market Gap Visual -->
-    <div class="glass rounded-2xl p-8 lg:p-12 reveal">
-      <h3 class="font-heading text-xl mb-8 text-center">O Gap do Mercado</h3>
-      <div class="grid md:grid-cols-4 gap-4">
-        <div class="text-center p-4 rounded-xl bg-white/[0.02]">
-          <div class="text-sm font-semibold text-red-400 mb-2">Marketplace</div>
-          <p class="text-xs text-secondary">Conecta mas nao forma. Nao garante renda.</p>
-          <div class="text-xs text-tertiary mt-3">Influee, JoinBrands</div>
+    <div class="glass rv" style="padding:40px">
+      <h3 class="font-h" style="margin-bottom:24px;font-size:1.2rem">O Gap do Mercado</h3>
+      <div class="g4">
+        <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,.02)">
+          <div style="font-size:.85rem;font-weight:600;color:#f87171;margin-bottom:6px">Marketplace</div>
+          <p style="font-size:.75rem;color:var(--t2)">Conecta mas nao forma. Nao garante renda.</p>
+          <div style="font-size:.7rem;color:var(--t3);margin-top:8px">Influee, JoinBrands</div>
         </div>
-        <div class="text-center p-4 rounded-xl bg-white/[0.02]">
-          <div class="text-sm font-semibold text-orange-400 mb-2">Educacao</div>
-          <p class="text-xs text-secondary">Ensina mas nao conecta com marcas.</p>
-          <div class="text-xs text-tertiary mt-3">EBAC, Academia UGC</div>
+        <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,.02)">
+          <div style="font-size:.85rem;font-weight:600;color:#fb923c;margin-bottom:6px">Educacao</div>
+          <p style="font-size:.75rem;color:var(--t2)">Ensina mas nao conecta com marcas.</p>
+          <div style="font-size:.7rem;color:var(--t3);margin-top:8px">EBAC, Academia UGC</div>
         </div>
-        <div class="text-center p-4 rounded-xl bg-white/[0.02]">
-          <div class="text-sm font-semibold text-yellow-400 mb-2">Agencias</div>
-          <p class="text-xs text-secondary">Foco em grandes creators. Ignora micro/mid.</p>
-          <div class="text-xs text-tertiary mt-3">Creators LLC</div>
+        <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,.02)">
+          <div style="font-size:.85rem;font-weight:600;color:#facc15;margin-bottom:6px">Agencias</div>
+          <p style="font-size:.75rem;color:var(--t2)">Foco em grandes creators. Ignora micro/mid.</p>
+          <div style="font-size:.7rem;color:var(--t3);margin-top:8px">Creators LLC</div>
         </div>
-        <div class="text-center p-4 rounded-xl border border-accent/30 bg-accent/[0.05]">
-          <div class="text-sm font-semibold gradient-text mb-2">Brandly</div>
-          <p class="text-xs text-secondary">Educacao + Marketplace + Renda Garantida + Rede</p>
-          <div class="text-xs text-[var(--cyan)] mt-3 font-semibold">UNICO</div>
+        <div style="padding:16px;border-radius:12px;border:1px solid rgba(29,69,216,.3);background:rgba(29,69,216,.05)">
+          <div style="font-size:.85rem;font-weight:600" class="grad">Brandly</div>
+          <p style="font-size:.75rem;color:var(--t2);margin-top:6px">Educacao + Marketplace + Renda Garantida + Rede</p>
+          <div style="font-size:.7rem;color:var(--cyan);margin-top:8px;font-weight:600">UNICO</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ SOLUCAO ============ -->
-<section class="py-section relative" id="solucao">
-  <div class="hero-orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(29,69,216,0.08),transparent);top:20%;right:-15%"></div>
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">A Solucao</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        Sistema <span class="gradient-text">SCALE</span>
-      </h2>
-      <p class="text-secondary mt-4 max-w-2xl mx-auto reveal">
-        O metodo proprietario que transforma qualquer pessoa em Creator Profissional com renda previsivel em ate 7 dias.
-      </p>
+<!-- ===== SOLUCAO ===== -->
+<section id="solucao" class="sec" style="position:relative">
+  <div class="orb" style="width:400px;height:400px;background:radial-gradient(circle,rgba(29,69,216,.07),transparent);top:20%;right:-15%"></div>
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="label rv" style="display:block;margin-bottom:12px">A Solucao</span>
+      <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem)">Sistema <span class="grad">SCALE</span></h2>
+      <p class="rv" style="color:var(--t2);margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto">O metodo que transforma qualquer pessoa em Creator Profissional com renda previsivel em ate 7 dias.</p>
     </div>
+    <div class="g3">
+      <div class="glass rv" style="padding:28px;grid-column:span 2;grid-row:span 2">
+        <div style="font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px">S — Selecao de Marcas</div>
+        <h3 style="font-size:1.4rem;margin-bottom:10px">+100 marcas disponiveis no app</h3>
+        <p style="color:var(--t2);font-size:.9rem;line-height:1.7">Creator escolhe por nicho, conecta-se direto via APP sem burocracia. Marcas com margem 50%+ negociada pela Brandly.</p>
+      </div>
+      <div class="glass rv" style="padding:24px">
+        <div style="font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">C — Capacitacao</div>
+        <h3 style="font-size:1rem;margin-bottom:6px">Formacao Creator Profissional</h3>
+        <p style="color:var(--t2);font-size:.8rem">UGC, storytelling, persuasao, camera, posicionamento.</p>
+      </div>
+      <div class="glass rv" style="padding:24px">
+        <div style="font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">A — Automacao IA</div>
+        <h3 style="font-size:1rem;margin-bottom:6px">27 roteiros + edicao em 30s</h3>
+        <p style="color:var(--t2);font-size:.8rem">3 ganchos x 3 corpos x 3 CTAs. IA edita com cortes e legendas.</p>
+      </div>
+      <div class="glass rv" style="padding:24px;grid-column:span 2">
+        <div style="display:flex;gap:32px;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px">
+            <div style="font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">L — Lives</div>
+            <h3 style="font-size:1rem;margin-bottom:6px">2 lives diarias</h3>
+            <p style="color:var(--t2);font-size:.8rem">Manha + noite. Mentoria continua, criacao coletiva.</p>
+          </div>
+          <div style="flex:1;min-width:200px">
+            <div style="font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">E — Estrutura</div>
+            <h3 style="font-size:1rem;margin-bottom:6px">Dashboard de performance</h3>
+            <p style="color:var(--t2);font-size:.8rem">Videos aprovados, pagamentos real-time, ranking.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rot-b rv" style="padding:24px;text-align:center">
+        <div>
+          <div style="font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">Resultado</div>
+          <div class="font-h grad" style="font-size:2rem;font-weight:700">R$100/dia</div>
+          <p style="color:var(--t2);font-size:.8rem;margin-top:6px">Garantido por 10 videos. 60-90 min.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- SCALE Bento Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="tilt-card glass rounded-xl p-8 lg:col-span-2 lg:row-span-2 reveal">
-        <div class="shine"></div>
-        <div class="h-full flex flex-col justify-between">
+<!-- ===== COMO FUNCIONA ===== -->
+<section id="como-funciona" class="sec">
+  <div class="wrap" style="text-align:center">
+    <span class="label rv" style="display:block;margin-bottom:12px">Como Funciona</span>
+    <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem);margin-bottom:40px">Do zero ao <span class="grad">primeiro pagamento</span></h2>
+    <div class="g5">
+      <div class="glass rv" style="padding:24px;text-align:center">
+        <div class="step-n">01</div>
+        <h3 style="font-size:.85rem;margin:8px 0 4px">Onboarding</h3>
+        <p style="color:var(--t2);font-size:.75rem">Analise comportamental + conexao redes sociais</p>
+      </div>
+      <div class="glass rv" style="padding:24px;text-align:center">
+        <div class="step-n">02</div>
+        <h3 style="font-size:.85rem;margin:8px 0 4px">Escolhe Marca</h3>
+        <p style="color:var(--t2);font-size:.75rem">Seleciona nicho e marca no app</p>
+      </div>
+      <div class="glass rv" style="padding:24px;text-align:center">
+        <div class="step-n">03</div>
+        <h3 style="font-size:.85rem;margin:8px 0 4px">IA Gera Roteiros</h3>
+        <p style="color:var(--t2);font-size:.75rem">27 combinacoes personalizadas</p>
+      </div>
+      <div class="glass rv" style="padding:24px;text-align:center">
+        <div class="step-n">04</div>
+        <h3 style="font-size:.85rem;margin:8px 0 4px">Grava + Edita</h3>
+        <p style="color:var(--t2);font-size:.75rem">10 videos em 60-90 min. IA edita</p>
+      </div>
+      <div class="glass-a rv glow" style="padding:24px;text-align:center">
+        <div class="step-n">05</div>
+        <h3 style="font-size:.85rem;margin:8px 0 4px">Recebe R$100</h3>
+        <p style="color:var(--t2);font-size:.75rem">Pagamento garantido por producao</p>
+      </div>
+    </div>
+    <p class="rv" style="color:var(--t2);font-size:.85rem;margin-top:24px">Tempo medio: <strong style="color:var(--t1)">60-90 min/dia</strong> &middot; Primeiro pagamento em <strong style="color:var(--t1)">ate 7 dias</strong></p>
+  </div>
+</section>
+
+<!-- ===== NUMEROS ===== -->
+<section id="numeros" class="sec">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="label rv" style="display:block;margin-bottom:12px">Mercado</span>
+      <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem)">Numeros que <span class="grad">validam</span></h2>
+    </div>
+    <div class="g3" style="margin-bottom:48px">
+      <div class="rv" style="position:relative;padding-top:60px">
+        <div class="big-n">500</div>
+        <div class="font-h" style="font-size:1.8rem;font-weight:700;position:relative;z-index:1">US$<span class="counter" data-target="500">0</span>bi</div>
+        <p style="color:var(--t2);font-size:.85rem;margin-top:6px;position:relative;z-index:1">Mercado global creator economy ate 2027</p>
+      </div>
+      <div class="rv" style="position:relative;padding-top:60px">
+        <div class="big-n">200</div>
+        <div class="font-h" style="font-size:1.8rem;font-weight:700;position:relative;z-index:1"><span class="counter" data-target="200">0</span>M</div>
+        <p style="color:var(--t2);font-size:.85rem;margin-top:6px;position:relative;z-index:1">Creators na China com modelo producao</p>
+      </div>
+      <div class="rv" style="position:relative;padding-top:60px">
+        <div class="big-n">50</div>
+        <div class="font-h" style="font-size:1.8rem;font-weight:700;position:relative;z-index:1"><span class="counter" data-target="50">0</span>M</div>
+        <p style="color:var(--t2);font-size:.85rem;margin-top:6px;position:relative;z-index:1">Creators nos EUA modelo profissional</p>
+      </div>
+    </div>
+    <div class="glass rv" style="padding:40px;text-align:center">
+      <h3 class="font-h" style="margin-bottom:24px;font-size:1.2rem">TAM / SAM / SOM</h3>
+      <div class="g3">
+        <div>
+          <div class="font-h grad" style="font-size:2.2rem;font-weight:700">US$500bi</div>
+          <div style="font-size:.85rem;font-weight:600;margin:4px 0">TAM</div>
+          <p style="font-size:.75rem;color:var(--t2)">Mercado global 2027</p>
+        </div>
+        <div>
+          <div class="font-h grad" style="font-size:2.2rem;font-weight:700">R$12bi</div>
+          <div style="font-size:.85rem;font-weight:600;margin:4px 0">SAM</div>
+          <p style="font-size:.75rem;color:var(--t2)">Creator economy Brasil</p>
+        </div>
+        <div>
+          <div class="font-h grad" style="font-size:2.2rem;font-weight:700">R$64mi</div>
+          <div style="font-size:.85rem;font-weight:600;margin:4px 0">SOM</div>
+          <p style="font-size:.75rem;color:var(--t2)">Alcancavel ano 1 (650 creators)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PERSONAS ===== -->
+<section id="personas" class="sec">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="label rv" style="display:block;margin-bottom:12px">Publico-Alvo</span>
+      <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem)">6 Personas <span class="grad">mapeadas</span></h2>
+    </div>
+    <div class="g3">
+      <div class="rot-b rv" style="padding:24px">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <span style="font-size:.7rem;background:rgba(29,69,216,.2);color:var(--cyan);padding:4px 10px;border-radius:20px;font-weight:600">#1 PRIORIDADE</span>
+            <span class="font-h grad" style="font-size:1.5rem;font-weight:700">9.75</span>
+          </div>
+          <h3 style="font-size:1.1rem">Carolina</h3>
+          <p style="font-size:.75rem;color:var(--t2);margin:4px 0 10px">Creator sem Previsibilidade &middot; 28 anos</p>
+          <p style="font-size:.85rem;color:var(--t2);line-height:1.5;margin-bottom:12px">15-80k seguidores. Renda R$800-4k irregular. Dor: imprevisibilidade.</p>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.1)"><div style="width:90%;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--cyan))"></div></div>
+            <span style="font-size:.75rem;color:var(--cyan);font-weight:600">80-90%</span>
+          </div>
+        </div>
+      </div>
+      <div class="glass rv" style="padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span style="font-size:.7rem;background:rgba(255,255,255,.05);color:var(--t2);padding:4px 10px;border-radius:20px">#2</span>
+          <span class="font-h grad" style="font-size:1.5rem;font-weight:700">9.05</span>
+        </div>
+        <h3 style="font-size:1.1rem">Fernanda</h3>
+        <p style="font-size:.75rem;color:var(--t2);margin:4px 0 10px">Desempregada &middot; 35 anos</p>
+        <p style="font-size:.85rem;color:var(--t2);line-height:1.5;margin-bottom:12px">Renda R$0. Seguro acabando. Age por necessidade.</p>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.1)"><div style="width:30%;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--cyan))"></div></div>
+          <span style="font-size:.75rem;font-weight:600">25-30%</span>
+        </div>
+      </div>
+      <div class="glass rv" style="padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span style="font-size:.7rem;background:rgba(255,255,255,.05);color:var(--t2);padding:4px 10px;border-radius:20px">#3</span>
+          <span class="font-h grad" style="font-size:1.5rem;font-weight:700">7.9</span>
+        </div>
+        <h3 style="font-size:1.1rem">Marina</h3>
+        <p style="font-size:.75rem;color:var(--t2);margin:4px 0 10px">Jovem CLT &middot; 24 anos</p>
+        <p style="font-size:.85rem;color:var(--t2);line-height:1.5">R$2.200/mes. Anti-CLT. Quer empreender.</p>
+      </div>
+      <div class="glass rv" style="padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span style="font-size:.7rem;background:rgba(255,255,255,.05);color:var(--t2);padding:4px 10px;border-radius:20px">#4</span>
+          <span class="font-h grad" style="font-size:1.5rem;font-weight:700">7.9</span>
+        </div>
+        <h3 style="font-size:1.1rem">Juliana</h3>
+        <p style="font-size:.75rem;color:var(--t2);margin:4px 0">CLT Cansada &middot; 32 anos &middot; R$3.500/mes</p>
+      </div>
+      <div class="glass rv" style="padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span style="font-size:.7rem;background:rgba(255,255,255,.05);color:var(--t2);padding:4px 10px;border-radius:20px">#5</span>
+          <span class="font-h" style="font-size:1.5rem;font-weight:700;color:var(--t2)">—</span>
+        </div>
+        <h3 style="font-size:1.1rem">Camila</h3>
+        <p style="font-size:.75rem;color:var(--t2);margin:4px 0">Mae Sobrecarregada &middot; 38 anos &middot; Motivacao: identidade</p>
+      </div>
+      <div class="glass rv" style="padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span style="font-size:.7rem;background:rgba(255,255,255,.05);color:var(--t2);padding:4px 10px;border-radius:20px">#6</span>
+          <span class="font-h" style="font-size:1.5rem;font-weight:700;color:var(--t2)">5-6</span>
+        </div>
+        <h3 style="font-size:1.1rem">Beatriz</h3>
+        <p style="font-size:.75rem;color:var(--t2);margin:4px 0">Universitaria &middot; 21 anos &middot; Comprometimento baixo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPENSACAO ===== -->
+<section id="compensacao" class="sec">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="label rv" style="display:block;margin-bottom:12px">Plano de Compensacao</span>
+      <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem)">Engine de <span class="grad">bonus</span></h2>
+    </div>
+    <div class="g4 rv" style="margin-bottom:32px">
+      <div class="glass" style="padding:24px;text-align:center">
+        <div class="font-h grad" style="font-size:2rem;font-weight:700">50%</div>
+        <h3 style="font-size:.85rem;margin-top:6px">Comissao Direta</h3>
+        <p style="font-size:.7rem;color:var(--t2);margin-top:4px">Ate 50% digital / 20% fisico</p>
+      </div>
+      <div class="glass" style="padding:24px;text-align:center">
+        <div class="font-h grad" style="font-size:2rem;font-weight:700">8%</div>
+        <h3 style="font-size:.85rem;margin-top:6px">Bonus Infinito</h3>
+        <p style="font-size:.7rem;color:var(--t2);margin-top:4px">Unilevel compressao dinamica</p>
+      </div>
+      <div class="glass" style="padding:24px;text-align:center">
+        <div class="font-h grad" style="font-size:2rem;font-weight:700">1%</div>
+        <h3 style="font-size:.85rem;margin-top:6px">Equiparacao</h3>
+        <p style="font-size:.7rem;color:var(--t2);margin-top:4px">Mesmo nivel = 1% da linha</p>
+      </div>
+      <div class="glass" style="padding:24px;text-align:center">
+        <div class="font-h grad" style="font-size:2rem;font-weight:700">1%</div>
+        <h3 style="font-size:.85rem;margin-top:6px">Pool Global</h3>
+        <p style="font-size:.7rem;color:var(--t2);margin-top:4px">Empire + Infinity</p>
+      </div>
+    </div>
+    <div class="glass rv" style="padding:28px;overflow-x:auto;margin-bottom:24px">
+      <h3 class="font-h" style="font-size:1.1rem;margin-bottom:16px">7 Niveis de Carreira</h3>
+      <table class="tbl">
+        <thead><tr><th>Nivel</th><th>Nome</th><th>QV Mensal</th><th>Digital</th><th>Fisico</th><th>Infinito D.</th><th>Infinito F.</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--t3)">N1</td><td style="font-weight:600">Seed</td><td>0 pts</td><td>20%</td><td>10%</td><td>0%</td><td>0%</td></tr>
+          <tr><td style="color:var(--t3)">N2</td><td style="font-weight:600">Spark</td><td>1.000</td><td>30%</td><td>12%</td><td>1,5%</td><td>1%</td></tr>
+          <tr><td style="color:var(--t3)">N3</td><td style="font-weight:600">Flow</td><td>5.000</td><td>35%</td><td>15%</td><td>3%</td><td>2%</td></tr>
+          <tr><td style="color:var(--t3)">N4</td><td style="font-weight:600;color:var(--cyan)">Iconic</td><td>20.000</td><td>40%</td><td>18%</td><td>5%</td><td>3,5%</td></tr>
+          <tr><td style="color:var(--t3)">N5</td><td style="font-weight:600;color:var(--cyan)">Vision</td><td>50.000</td><td>45%</td><td>20%</td><td>6,5%</td><td>4,5%</td></tr>
+          <tr><td style="color:var(--t3)">N6</td><td style="font-weight:600" class="grad">Empire</td><td>150.000</td><td>50%</td><td>20%</td><td>8%</td><td>5%</td></tr>
+          <tr><td style="color:var(--t3)">N7</td><td style="font-weight:600" class="grad">Infinity</td><td>300.000</td><td>50%</td><td>20%</td><td>8%</td><td>5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="glass rv" style="padding:28px">
+      <h3 class="font-h" style="font-size:1.1rem;margin-bottom:16px">Exemplo: Venda Infoproduto R$200 por Iconic</h3>
+      <div class="g5">
+        <div style="background:rgba(255,255,255,.03);border-radius:12px;padding:16px;text-align:center">
+          <div class="font-h" style="font-size:1.2rem;font-weight:700">R$80</div>
+          <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Direto (40%)</div>
+        </div>
+        <div style="background:rgba(255,255,255,.03);border-radius:12px;padding:16px;text-align:center">
+          <div class="font-h" style="font-size:1.2rem;font-weight:700">R$16</div>
+          <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Infinito (8%)</div>
+        </div>
+        <div style="background:rgba(255,255,255,.03);border-radius:12px;padding:16px;text-align:center">
+          <div class="font-h" style="font-size:1.2rem;font-weight:700">R$2</div>
+          <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Equiparacao</div>
+        </div>
+        <div style="background:rgba(255,255,255,.03);border-radius:12px;padding:16px;text-align:center">
+          <div class="font-h" style="font-size:1.2rem;font-weight:700">R$2</div>
+          <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Pool Global</div>
+        </div>
+        <div style="background:rgba(29,69,216,.08);border:1px solid rgba(29,69,216,.2);border-radius:12px;padding:16px;text-align:center">
+          <div class="font-h grad" style="font-size:1.2rem;font-weight:700">R$100</div>
+          <div style="font-size:.7rem;color:var(--t2);margin-top:4px">Margem Brandly</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OFERTA ===== -->
+<section id="oferta" class="sec">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="label rv" style="display:block;margin-bottom:12px">Oferta Principal</span>
+      <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem)">Licenca <span class="grad">Brandly Creator</span></h2>
+    </div>
+    <div class="g2" style="align-items:start">
+      <div class="glass rv" style="padding:32px">
+        <h3 class="font-h" style="font-size:1.1rem;margin-bottom:20px">Empilhamento de Valor</h3>
+        <div style="border-bottom:1px solid rgba(255,255,255,.05);padding:12px 0;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:.9rem;font-weight:600">Formacao Creator Profissional</div><div style="font-size:.75rem;color:var(--t2)">UGC, storytelling, persuasao</div></div><span style="color:var(--t2);text-decoration:line-through;font-size:.85rem">R$1.997</span></div>
+        <div style="border-bottom:1px solid rgba(255,255,255,.05);padding:12px 0;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:.9rem;font-weight:600">APP Brandly (IA)</div><div style="font-size:.75rem;color:var(--t2)">27 roteiros + edicao 30s</div></div><span style="color:var(--t2);text-decoration:line-through;font-size:.85rem">R$1.822/ano</span></div>
+        <div style="border-bottom:1px solid rgba(255,255,255,.05);padding:12px 0;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:.9rem;font-weight:600">Conexao +100 Marcas</div></div><span style="color:var(--cyan);font-size:.85rem">Inestimavel</span></div>
+        <div style="border-bottom:1px solid rgba(255,255,255,.05);padding:12px 0;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:.9rem;font-weight:600">Comunidade + Lives Diarias</div></div><span style="color:var(--t2);text-decoration:line-through;font-size:.85rem">R$2.364/ano</span></div>
+        <div style="border-bottom:1px solid rgba(255,255,255,.05);padding:12px 0;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:.9rem;font-weight:600">Media Kit Profissional</div></div><span style="color:var(--t2);text-decoration:line-through;font-size:.85rem">R$197</span></div>
+        <div style="padding:16px 0;display:flex;justify-content:space-between;align-items:center"><div style="font-size:1.1rem;font-weight:600" class="font-h">Valor Total</div><span style="color:var(--t2);text-decoration:line-through;font-size:1rem">R$5.416+</span></div>
+      </div>
+      <div class="rv">
+        <div class="rot-b glow" style="padding:36px;text-align:center">
           <div>
-            <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--cyan)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div style="color:var(--t2);font-size:.85rem;margin-bottom:8px">Voce paga apenas</div>
+            <div class="font-h grad" style="font-size:3.5rem;font-weight:700">12x R$49,90</div>
+            <div style="color:var(--t2);font-size:.85rem;margin:8px 0 20px">ou <strong style="color:var(--t1)">R$497 a vista</strong></div>
+            <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:14px;margin-bottom:20px">
+              <div style="color:#4ade80;font-size:.9rem;font-weight:600">Economia de R$4.818,20</div>
             </div>
-            <div class="text-xs font-bold text-[var(--cyan)] tracking-wider uppercase mb-3">S — Selecao de Marcas</div>
-            <h3 class="text-2xl font-heading font-semibold mb-4">+100 marcas disponiveis no app</h3>
-            <p class="text-secondary leading-relaxed">Creator escolhe por nicho, conecta-se direto via APP sem burocracia. Marcas parceiras com margem de 50%+ negociada pela Brandly.</p>
-          </div>
-          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-white/5">
-            <div class="flex -space-x-2">
-              <div class="w-8 h-8 rounded-full bg-emerald-500/20 border-2 border-surface-2 flex items-center justify-center text-[10px] font-bold">YH</div>
-              <div class="w-8 h-8 rounded-full bg-blue-500/20 border-2 border-surface-2 flex items-center justify-center text-[10px] font-bold">NT</div>
-              <div class="w-8 h-8 rounded-full bg-purple-500/20 border-2 border-surface-2 flex items-center justify-center text-[10px] font-bold">FK</div>
-              <div class="w-8 h-8 rounded-full bg-orange-500/20 border-2 border-surface-2 flex items-center justify-center text-[10px] font-bold">+97</div>
-            </div>
-            <span class="text-xs text-secondary">Marcas ativas</span>
+            <a href="#" class="btn btn-p" style="width:100%;justify-content:center">Quero ser Creator Brandly</a>
+            <p style="font-size:.75rem;color:var(--t2);margin-top:12px">Garantia incondicional de 30 dias</p>
           </div>
         </div>
-      </div>
-
-      <div class="tilt-card glass rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="text-xs font-bold text-[var(--cyan)] tracking-wider uppercase mb-3">C — Capacitacao</div>
-        <h3 class="text-lg font-semibold mb-2">Formacao Creator Profissional</h3>
-        <p class="text-secondary text-sm">UGC, storytelling, persuasao, camera, posicionamento. Do zero ao profissional.</p>
-      </div>
-
-      <div class="tilt-card glass rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="text-xs font-bold text-[var(--cyan)] tracking-wider uppercase mb-3">A — Automacao IA</div>
-        <h3 class="text-lg font-semibold mb-2">27 roteiros + edicao em 30s</h3>
-        <p class="text-secondary text-sm">3 ganchos x 3 corpos x 3 CTAs = 27 combinacoes. IA edita com cortes, legendas e transicoes.</p>
-      </div>
-
-      <div class="tilt-card glass rounded-xl p-6 lg:col-span-2 reveal">
-        <div class="shine"></div>
-        <div class="flex flex-col sm:flex-row gap-6">
-          <div class="flex-1">
-            <div class="text-xs font-bold text-[var(--cyan)] tracking-wider uppercase mb-3">L — Lives</div>
-            <h3 class="text-lg font-semibold mb-2">2 lives diarias</h3>
-            <p class="text-secondary text-sm">Manha + noite. Mentoria continua, criacao coletiva, tira-duvidas em tempo real.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
+          <div class="glass rv" style="padding:14px 18px;display:flex;align-items:center;gap:14px">
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(234,179,8,.1);display:flex;align-items:center;justify-content:center;color:#eab308;font-weight:700;font-size:.8rem;flex-shrink:0">10</div>
+            <div><div style="font-size:.85rem;font-weight:600">Kit Creator Fisico</div><div style="font-size:.7rem;color:var(--t2)">Ring light + mic + suporte &middot; R$400</div></div>
           </div>
-          <div class="flex-1">
-            <div class="text-xs font-bold text-[var(--cyan)] tracking-wider uppercase mb-3">E — Estrutura</div>
-            <h3 class="text-lg font-semibold mb-2">Dashboard de performance</h3>
-            <p class="text-secondary text-sm">Videos aprovados/pendentes, pagamentos real-time, ranking, metricas.</p>
+          <div class="glass rv" style="padding:14px 18px;display:flex;align-items:center;gap:14px">
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(168,85,247,.1);display:flex;align-items:center;justify-content:center;color:#a855f7;font-weight:700;font-size:.8rem;flex-shrink:0">20</div>
+            <div><div style="font-size:.85rem;font-weight:600">Pagamento Dobrado 3 Dias</div><div style="font-size:.7rem;color:var(--t2)">R$200/dia nos primeiros 3 dias</div></div>
           </div>
-        </div>
-      </div>
-
-      <div class="tilt-card rotating-border rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="relative z-10">
-          <div class="text-xs font-bold text-[var(--cyan)] tracking-wider uppercase mb-3">Resultado</div>
-          <div class="text-3xl font-heading font-bold gradient-text mb-2">R$100/dia</div>
-          <p class="text-secondary text-sm">Garantido por 10 videos. 60-90 min de trabalho.</p>
+          <div class="glass rv" style="padding:14px 18px;display:flex;align-items:center;gap:14px">
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(59,130,246,.1);display:flex;align-items:center;justify-content:center;color:#3b82f6;font-weight:700;font-size:.8rem;flex-shrink:0">50</div>
+            <div><div style="font-size:.85rem;font-weight:600">Meta Reduzida 1a Semana</div><div style="font-size:.7rem;color:var(--t2)">5 videos = R$100 completo</div></div>
+          </div>
+          <div class="glass rv" style="padding:14px 18px;display:flex;align-items:center;gap:14px">
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(34,197,94,.1);display:flex;align-items:center;justify-content:center;color:#22c55e;font-weight:700;font-size:.8rem;flex-shrink:0">100</div>
+            <div><div style="font-size:.85rem;font-weight:600">Marcas Premium</div><div style="font-size:.7rem;color:var(--t2)">Comissoes 2-3x maiores</div></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ COMO FUNCIONA ============ -->
-<section class="py-section" id="como-funciona">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">Como Funciona</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        Do zero ao <span class="gradient-text">primeiro pagamento</span>
-      </h2>
+<!-- ===== DIFERENCIAIS ===== -->
+<section id="diferenciais" class="sec">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="label rv" style="display:block;margin-bottom:12px">Diferenciais</span>
+      <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem)">Por que a Brandly e <span class="grad">unica</span></h2>
     </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="step-num mx-auto mb-4">01</div>
-        <h3 class="text-sm font-semibold mb-2">Onboarding</h3>
-        <p class="text-secondary text-xs">Analise comportamental + perfil + conexao redes sociais</p>
-      </div>
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="step-num mx-auto mb-4">02</div>
-        <h3 class="text-sm font-semibold mb-2">Escolhe Marca</h3>
-        <p class="text-secondary text-xs">Seleciona nicho e marca parceira no app</p>
-      </div>
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="step-num mx-auto mb-4">03</div>
-        <h3 class="text-sm font-semibold mb-2">IA Gera Roteiros</h3>
-        <p class="text-secondary text-xs">27 combinacoes automaticas personalizadas</p>
-      </div>
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="step-num mx-auto mb-4">04</div>
-        <h3 class="text-sm font-semibold mb-2">Grava + Edita</h3>
-        <p class="text-secondary text-xs">10 videos em 60-90 min. IA edita em 30s cada</p>
-      </div>
-      <div class="glass-accent rounded-xl p-6 text-center reveal glow-border">
-        <div class="step-num mx-auto mb-4">05</div>
-        <h3 class="text-sm font-semibold mb-2">Recebe R$100</h3>
-        <p class="text-secondary text-xs">Aprovacao da marca + pagamento garantido por producao</p>
-      </div>
-    </div>
-
-    <div class="text-center mt-10 reveal">
-      <p class="text-secondary text-sm">Tempo medio: <strong class="text-primary">60-90 minutos/dia</strong> &middot; Primeiro pagamento em <strong class="text-primary">ate 7 dias</strong></p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ NUMEROS / MERCADO ============ -->
-<section class="py-section overflow-hidden" id="numeros">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">Mercado</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        Numeros que <span class="gradient-text">validam</span>
-      </h2>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-      <div class="relative reveal">
-        <div class="big-num absolute -top-6 -left-2 select-none pointer-events-none" data-parallax="-0.1">500</div>
-        <div class="relative z-10 pt-20">
-          <div class="counter text-3xl font-heading font-bold" data-target="500" data-prefix="US$" data-suffix="bi">0</div>
-          <p class="text-secondary text-sm mt-2">Mercado global de creator economy ate 2027</p>
-        </div>
-      </div>
-      <div class="relative reveal">
-        <div class="big-num absolute -top-6 -left-2 select-none pointer-events-none" data-parallax="-0.1">200</div>
-        <div class="relative z-10 pt-20">
-          <div class="counter text-3xl font-heading font-bold" data-target="200" data-suffix="M">0</div>
-          <p class="text-secondary text-sm mt-2">Creators na China com modelo baseado em producao</p>
-        </div>
-      </div>
-      <div class="relative reveal">
-        <div class="big-num absolute -top-6 -left-2 select-none pointer-events-none" data-parallax="-0.1">50</div>
-        <div class="relative z-10 pt-20">
-          <div class="counter text-3xl font-heading font-bold" data-target="50" data-suffix="M">0</div>
-          <p class="text-secondary text-sm mt-2">Creators nos EUA com modelo profissional</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAM SAM SOM -->
-    <div class="mt-20 glass rounded-2xl p-8 lg:p-12 reveal">
-      <h3 class="font-heading text-xl mb-8 text-center">TAM / SAM / SOM</h3>
-      <div class="grid md:grid-cols-3 gap-8 text-center">
-        <div>
-          <div class="text-4xl font-heading font-bold gradient-text mb-2">US$500bi</div>
-          <div class="text-sm font-semibold mb-1">TAM</div>
-          <p class="text-xs text-secondary">Mercado global creator economy 2027</p>
-        </div>
-        <div>
-          <div class="text-4xl font-heading font-bold gradient-text mb-2">R$12bi</div>
-          <div class="text-sm font-semibold mb-1">SAM</div>
-          <p class="text-xs text-secondary">Creator economy Brasil — 500k creators ativos</p>
-        </div>
-        <div>
-          <div class="text-4xl font-heading font-bold gradient-text mb-2">R$64mi</div>
-          <div class="text-sm font-semibold mb-1">SOM</div>
-          <p class="text-xs text-secondary">Alcancavel ano 1 com 650 creators</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PERSONAS ============ -->
-<section class="py-section" id="personas">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">Publico-Alvo</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        6 Personas <span class="gradient-text">mapeadas</span>
-      </h2>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Carolina - #1 -->
-      <div class="tilt-card rotating-border rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="relative z-10">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs bg-accent/20 text-[var(--cyan)] px-3 py-1 rounded-full font-semibold">#1 PRIORIDADE</span>
-            <span class="persona-score text-2xl gradient-text">9.75</span>
-          </div>
-          <h3 class="text-lg font-semibold mb-1">Carolina</h3>
-          <p class="text-xs text-secondary mb-3">Creator sem Previsibilidade &middot; 28 anos</p>
-          <p class="text-sm text-secondary leading-relaxed mb-4">15-80k seguidores. Renda R$800-4k irregular. Dor maxima: imprevisibilidade.</p>
-          <div class="flex items-center gap-2">
-            <div class="flex-1 h-1.5 rounded-full bg-white/10">
-              <div class="h-full rounded-full bg-gradient-to-r from-accent to-cyan" style="width:90%"></div>
-            </div>
-            <span class="text-xs font-semibold text-[var(--cyan)]">80-90%</span>
-          </div>
-          <p class="text-[10px] text-tertiary mt-1">Taxa de conversao esperada</p>
-        </div>
-      </div>
-
-      <!-- Fernanda - #2 -->
-      <div class="tilt-card glass rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs bg-white/5 text-secondary px-3 py-1 rounded-full">#2</span>
-          <span class="persona-score text-2xl gradient-text">9.05</span>
-        </div>
-        <h3 class="text-lg font-semibold mb-1">Fernanda</h3>
-        <p class="text-xs text-secondary mb-3">Desempregada em Transicao &middot; 35 anos</p>
-        <p class="text-sm text-secondary leading-relaxed mb-4">Renda R$0. Seguro acabando. Age por NECESSIDADE. Precisa trial R$1.</p>
-        <div class="flex items-center gap-2">
-          <div class="flex-1 h-1.5 rounded-full bg-white/10">
-            <div class="h-full rounded-full bg-gradient-to-r from-accent to-cyan" style="width:30%"></div>
-          </div>
-          <span class="text-xs font-semibold">25-30%</span>
-        </div>
-      </div>
-
-      <!-- Marina - #3 -->
-      <div class="tilt-card glass rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs bg-white/5 text-secondary px-3 py-1 rounded-full">#3</span>
-          <span class="persona-score text-2xl gradient-text">7.9</span>
-        </div>
-        <h3 class="text-lg font-semibold mb-1">Marina</h3>
-        <p class="text-xs text-secondary mb-3">Jovem CLT Junior &middot; 24 anos</p>
-        <p class="text-sm text-secondary leading-relaxed mb-4">R$2.200/mes. Anti-CLT. Quer empreender. FOMO forte.</p>
-        <div class="flex items-center gap-2">
-          <div class="flex-1 h-1.5 rounded-full bg-white/10">
-            <div class="h-full rounded-full bg-gradient-to-r from-accent to-cyan" style="width:28%"></div>
-          </div>
-          <span class="text-xs font-semibold">25-30%</span>
-        </div>
-      </div>
-
-      <!-- Juliana - #4 -->
-      <div class="tilt-card glass rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs bg-white/5 text-secondary px-3 py-1 rounded-full">#4</span>
-          <span class="persona-score text-2xl gradient-text">7.9</span>
-        </div>
-        <h3 class="text-lg font-semibold mb-1">Juliana</h3>
-        <p class="text-xs text-secondary mb-3">CLT Cansada &middot; 32 anos</p>
-        <p class="text-sm text-secondary leading-relaxed">R$3.500/mes. Salario congelado. Medo financeiro constante.</p>
-      </div>
-
-      <!-- Camila - #5 -->
-      <div class="tilt-card glass rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs bg-white/5 text-secondary px-3 py-1 rounded-full">#5</span>
-          <span class="persona-score text-2xl text-secondary">—</span>
-        </div>
-        <h3 class="text-lg font-semibold mb-1">Camila</h3>
-        <p class="text-xs text-secondary mb-3">Mae Sobrecarregada &middot; 38 anos</p>
-        <p class="text-sm text-secondary leading-relaxed">Renda R$0. Motivacao principal: IDENTIDADE, nao dinheiro.</p>
-      </div>
-
-      <!-- Beatriz - #6 -->
-      <div class="tilt-card glass rounded-xl p-6 reveal">
-        <div class="shine"></div>
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs bg-white/5 text-secondary px-3 py-1 rounded-full">#6</span>
-          <span class="persona-score text-2xl text-secondary">5-6</span>
-        </div>
-        <h3 class="text-lg font-semibold mb-1">Beatriz</h3>
-        <p class="text-xs text-secondary mb-3">Universitaria &middot; 21 anos</p>
-        <p class="text-sm text-secondary leading-relaxed">R$500-800. Comprometimento baixo. Sindrome do objeto brilhante.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ COMPENSACAO ============ -->
-<section class="py-section" id="compensacao">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">Plano de Compensacao</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        Engine de <span class="gradient-text">bonus</span>
-      </h2>
-    </div>
-
-    <!-- 4 Pillars -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="text-3xl font-heading font-bold gradient-text mb-2">50%</div>
-        <h3 class="text-sm font-semibold mb-1">Comissao Direta</h3>
-        <p class="text-xs text-secondary">Ate 50% digital / 20% fisico</p>
-      </div>
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="text-3xl font-heading font-bold gradient-text mb-2">8%</div>
-        <h3 class="text-sm font-semibold mb-1">Bonus Infinito</h3>
-        <p class="text-xs text-secondary">Unilevel com compressao dinamica</p>
-      </div>
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="text-3xl font-heading font-bold gradient-text mb-2">1%</div>
-        <h3 class="text-sm font-semibold mb-1">Equiparacao</h3>
-        <p class="text-xs text-secondary">Quando direto alcanca mesmo nivel</p>
-      </div>
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="text-3xl font-heading font-bold gradient-text mb-2">1%</div>
-        <h3 class="text-sm font-semibold mb-1">Pool Global</h3>
-        <p class="text-xs text-secondary">Distribuido entre Empire + Infinity</p>
-      </div>
-    </div>
-
-    <!-- Career Levels Table -->
-    <div class="glass rounded-2xl p-6 lg:p-8 overflow-x-auto reveal">
-      <h3 class="font-heading text-lg mb-6">7 Niveis de Carreira</h3>
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Nivel</th>
-            <th>Nome</th>
-            <th>QV Mensal</th>
-            <th>Digital</th>
-            <th>Fisico</th>
-            <th>Infinito D.</th>
-            <th>Infinito F.</th>
-          </tr>
-        </thead>
+    <div class="glass rv" style="padding:28px;overflow-x:auto">
+      <table class="tbl" style="text-align:center">
+        <thead><tr><th style="text-align:left"></th><th class="grad" style="font-size:.8rem">Brandly</th><th>Influee</th><th>JoinBrands</th><th>EBAC</th><th>Criador Viral</th></tr></thead>
         <tbody>
-          <tr>
-            <td class="text-tertiary">N1</td>
-            <td class="font-semibold">Seed</td>
-            <td>0 pts</td>
-            <td>20%</td>
-            <td>10%</td>
-            <td>0%</td>
-            <td>0%</td>
-          </tr>
-          <tr>
-            <td class="text-tertiary">N2</td>
-            <td class="font-semibold">Spark</td>
-            <td>1.000 pts</td>
-            <td>30%</td>
-            <td>12%</td>
-            <td>1,5%</td>
-            <td>1%</td>
-          </tr>
-          <tr>
-            <td class="text-tertiary">N3</td>
-            <td class="font-semibold">Flow</td>
-            <td>5.000 pts</td>
-            <td>35%</td>
-            <td>15%</td>
-            <td>3%</td>
-            <td>2%</td>
-          </tr>
-          <tr>
-            <td class="text-tertiary">N4</td>
-            <td class="font-semibold" style="color:var(--cyan)">Iconic</td>
-            <td>20.000 pts</td>
-            <td>40%</td>
-            <td>18%</td>
-            <td>5%</td>
-            <td>3,5%</td>
-          </tr>
-          <tr>
-            <td class="text-tertiary">N5</td>
-            <td class="font-semibold" style="color:var(--cyan)">Vision</td>
-            <td>50.000 pts</td>
-            <td>45%</td>
-            <td>20%</td>
-            <td>6,5%</td>
-            <td>4,5%</td>
-          </tr>
-          <tr>
-            <td class="text-tertiary">N6</td>
-            <td class="font-semibold gradient-text" style="-webkit-text-fill-color:unset">Empire</td>
-            <td>150.000 pts</td>
-            <td>50%</td>
-            <td>20%</td>
-            <td>8%</td>
-            <td>5%</td>
-          </tr>
-          <tr>
-            <td class="text-tertiary">N7</td>
-            <td class="font-semibold gradient-text" style="-webkit-text-fill-color:unset">Infinity</td>
-            <td>300.000 pts</td>
-            <td>50%</td>
-            <td>20%</td>
-            <td>8%</td>
-            <td>5%</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Example -->
-    <div class="mt-8 glass rounded-2xl p-6 lg:p-8 reveal">
-      <h3 class="font-heading text-lg mb-6">Exemplo: Venda de Infoproduto R$200 por um Iconic</h3>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        <div class="bg-white/[0.03] rounded-xl p-4 text-center">
-          <div class="text-xl font-heading font-bold">R$80</div>
-          <div class="text-xs text-secondary mt-1">Bonus Direto (40%)</div>
-        </div>
-        <div class="bg-white/[0.03] rounded-xl p-4 text-center">
-          <div class="text-xl font-heading font-bold">R$16</div>
-          <div class="text-xs text-secondary mt-1">Bonus Infinito (8%)</div>
-        </div>
-        <div class="bg-white/[0.03] rounded-xl p-4 text-center">
-          <div class="text-xl font-heading font-bold">R$2</div>
-          <div class="text-xs text-secondary mt-1">Equiparacao (1%)</div>
-        </div>
-        <div class="bg-white/[0.03] rounded-xl p-4 text-center">
-          <div class="text-xl font-heading font-bold">R$2</div>
-          <div class="text-xs text-secondary mt-1">Pool Global (1%)</div>
-        </div>
-        <div class="bg-accent/10 border border-accent/20 rounded-xl p-4 text-center">
-          <div class="text-xl font-heading font-bold gradient-text">R$100</div>
-          <div class="text-xs text-secondary mt-1">Margem Brandly (50%)</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ OFERTA ============ -->
-<section class="py-section" id="oferta">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">Oferta Principal</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        Licenca <span class="gradient-text">Brandly Creator</span>
-      </h2>
-    </div>
-
-    <div class="grid lg:grid-cols-2 gap-8 items-start">
-      <!-- Empilhamento de Valor -->
-      <div class="glass rounded-2xl p-8 reveal">
-        <h3 class="font-heading text-lg mb-6">Empilhamento de Valor</h3>
-        <div class="space-y-4">
-          <div class="flex items-center justify-between py-3 border-b border-white/5">
-            <div>
-              <div class="text-sm font-semibold">Formacao Creator Profissional</div>
-              <div class="text-xs text-secondary">UGC, storytelling, persuasao, camera</div>
-            </div>
-            <span class="text-sm text-secondary line-through">R$1.997</span>
-          </div>
-          <div class="flex items-center justify-between py-3 border-b border-white/5">
-            <div>
-              <div class="text-sm font-semibold">APP Brandly (Roteiro + Edicao IA)</div>
-              <div class="text-xs text-secondary">27 roteiros + edicao em 30s/video</div>
-            </div>
-            <span class="text-sm text-secondary line-through">R$1.822/ano</span>
-          </div>
-          <div class="flex items-center justify-between py-3 border-b border-white/5">
-            <div>
-              <div class="text-sm font-semibold">Conexao +100 Marcas</div>
-              <div class="text-xs text-secondary">Acesso direto via APP, contratos negociados</div>
-            </div>
-            <span class="text-sm text-[var(--cyan)]">Inestimavel</span>
-          </div>
-          <div class="flex items-center justify-between py-3 border-b border-white/5">
-            <div>
-              <div class="text-sm font-semibold">Comunidade + Lives Diarias</div>
-              <div class="text-xs text-secondary">2 lives/dia, mentoria continua, networking</div>
-            </div>
-            <span class="text-sm text-secondary line-through">R$2.364/ano</span>
-          </div>
-          <div class="flex items-center justify-between py-3 border-b border-white/5">
-            <div>
-              <div class="text-sm font-semibold">Media Kit Profissional</div>
-              <div class="text-xs text-secondary">Portfolio automatizado + metricas</div>
-            </div>
-            <span class="text-sm text-secondary line-through">R$197</span>
-          </div>
-          <div class="flex items-center justify-between py-4 mt-2">
-            <div class="text-lg font-heading font-semibold">Valor Total</div>
-            <span class="text-lg text-secondary line-through">R$5.416+</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Preco Real -->
-      <div class="reveal">
-        <div class="rotating-border rounded-2xl p-8 glow-box">
-          <div class="relative z-10 text-center">
-            <div class="text-sm text-secondary mb-2">Voce paga apenas</div>
-            <div class="text-6xl font-heading font-bold gradient-text mb-2">12x R$49,90</div>
-            <div class="text-sm text-secondary mb-6">ou <strong class="text-primary">R$497 a vista</strong></div>
-            <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 mb-6">
-              <div class="text-emerald-400 text-sm font-semibold">Economia de R$4.818,20</div>
-              <div class="text-xs text-secondary mt-1">vs valor de mercado</div>
-            </div>
-            <a href="#" class="btn-primary w-full justify-center magnetic">Quero ser Creator Brandly</a>
-            <p class="text-xs text-secondary mt-4">Garantia incondicional de 30 dias</p>
-          </div>
-        </div>
-
-        <!-- Bonus -->
-        <div class="mt-6 space-y-3">
-          <div class="glass rounded-xl p-4 flex items-center gap-4 reveal">
-            <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-400 font-bold text-sm flex-shrink-0">10</div>
-            <div><div class="text-sm font-semibold">Kit Creator Fisico</div><div class="text-xs text-secondary">Ring light + mic + suporte &middot; R$400</div></div>
-          </div>
-          <div class="glass rounded-xl p-4 flex items-center gap-4 reveal">
-            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 font-bold text-sm flex-shrink-0">20</div>
-            <div><div class="text-sm font-semibold">Pagamento Dobrado 3 Dias</div><div class="text-xs text-secondary">R$200/dia nos primeiros 3 dias &middot; R$300</div></div>
-          </div>
-          <div class="glass rounded-xl p-4 flex items-center gap-4 reveal">
-            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-sm flex-shrink-0">50</div>
-            <div><div class="text-sm font-semibold">Meta Reduzida 1a Semana</div><div class="text-xs text-secondary">5 videos = R$100 completo &middot; R$700</div></div>
-          </div>
-          <div class="glass rounded-xl p-4 flex items-center gap-4 reveal">
-            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold text-sm flex-shrink-0">100</div>
-            <div><div class="text-sm font-semibold">Marcas Premium</div><div class="text-xs text-secondary">Comissoes 2-3x maiores</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DIFERENCIAIS ============ -->
-<section class="py-section" id="diferenciais">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">Diferenciais</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        Por que a Brandly e <span class="gradient-text">unica</span>
-      </h2>
-    </div>
-
-    <div class="glass rounded-2xl p-6 lg:p-8 overflow-x-auto reveal">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="text-center gradient-text" style="-webkit-text-fill-color:unset;font-size:0.85rem">Brandly</th>
-            <th class="text-center">Influee</th>
-            <th class="text-center">JoinBrands</th>
-            <th class="text-center">EBAC</th>
-            <th class="text-center">Criador Viral</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="font-semibold text-primary">Renda garantida por producao</td>
-            <td class="text-center text-emerald-400 text-lg">&#10003;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-          </tr>
-          <tr>
-            <td class="font-semibold text-primary">Formacao completa</td>
-            <td class="text-center text-emerald-400 text-lg">&#10003;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-emerald-400">&#10003;</td>
-            <td class="text-center text-yellow-400">~</td>
-          </tr>
-          <tr>
-            <td class="font-semibold text-primary">Conexao com +100 marcas</td>
-            <td class="text-center text-emerald-400 text-lg">&#10003;</td>
-            <td class="text-center text-emerald-400">&#10003;</td>
-            <td class="text-center text-emerald-400">&#10003;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-          </tr>
-          <tr>
-            <td class="font-semibold text-primary">IA de roteiros + edicao</td>
-            <td class="text-center text-emerald-400 text-lg">&#10003;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-yellow-400">~</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-          </tr>
-          <tr>
-            <td class="font-semibold text-primary">Bonus de rede multinivel</td>
-            <td class="text-center text-emerald-400 text-lg">&#10003;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-          </tr>
-          <tr>
-            <td class="font-semibold text-primary">Gamificacao + carreira</td>
-            <td class="text-center text-emerald-400 text-lg">&#10003;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-            <td class="text-center text-red-400">&#10007;</td>
-          </tr>
+          <tr><td style="text-align:left;font-weight:600;color:var(--t1)">Renda garantida</td><td style="color:#4ade80;font-size:1.2rem">&#10003;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td></tr>
+          <tr><td style="text-align:left;font-weight:600;color:var(--t1)">Formacao completa</td><td style="color:#4ade80;font-size:1.2rem">&#10003;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td><td style="color:#4ade80">&#10003;</td><td style="color:#facc15">~</td></tr>
+          <tr><td style="text-align:left;font-weight:600;color:var(--t1)">+100 marcas</td><td style="color:#4ade80;font-size:1.2rem">&#10003;</td><td style="color:#4ade80">&#10003;</td><td style="color:#4ade80">&#10003;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td></tr>
+          <tr><td style="text-align:left;font-weight:600;color:var(--t1)">IA roteiros + edicao</td><td style="color:#4ade80;font-size:1.2rem">&#10003;</td><td style="color:#f87171">&#10007;</td><td style="color:#facc15">~</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td></tr>
+          <tr><td style="text-align:left;font-weight:600;color:var(--t1)">Bonus rede multinivel</td><td style="color:#4ade80;font-size:1.2rem">&#10003;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td></tr>
+          <tr><td style="text-align:left;font-weight:600;color:var(--t1)">Gamificacao + carreira</td><td style="color:#4ade80;font-size:1.2rem">&#10003;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td><td style="color:#f87171">&#10007;</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<!-- ============ PROJECOES ============ -->
-<section class="py-section" id="projecoes">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">Projecoes Financeiras</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        Cenario <span class="gradient-text">Ano 1</span>
-      </h2>
+<!-- ===== PROJECOES ===== -->
+<section id="projecoes" class="sec">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="label rv" style="display:block;margin-bottom:12px">Projecoes Financeiras</span>
+      <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem)">Cenario <span class="grad">Ano 1</span></h2>
     </div>
-
-    <!-- Totals -->
-    <div class="grid md:grid-cols-3 gap-6 mb-12">
-      <div class="glass-accent rounded-2xl p-8 text-center glow-border reveal">
-        <div class="counter text-4xl font-heading font-bold gradient-text" data-target="5340" data-prefix="R$" data-suffix="k">0</div>
-        <p class="text-secondary text-sm mt-2">GMV Acumulado 12 meses</p>
+    <div class="g3 rv" style="margin-bottom:32px">
+      <div class="glass-a glow" style="padding:32px;text-align:center;border-radius:16px">
+        <div class="font-h grad" style="font-size:2.2rem;font-weight:700">R$<span class="counter" data-target="5340">0</span>k</div>
+        <p style="color:var(--t2);font-size:.85rem;margin-top:6px">GMV Acumulado 12 meses</p>
       </div>
-      <div class="glass-accent rounded-2xl p-8 text-center glow-border reveal">
-        <div class="counter text-4xl font-heading font-bold gradient-text" data-target="1415" data-prefix="R$" data-suffix="k">0</div>
-        <p class="text-secondary text-sm mt-2">Margem Bruta Brandly</p>
+      <div class="glass-a glow" style="padding:32px;text-align:center;border-radius:16px">
+        <div class="font-h grad" style="font-size:2.2rem;font-weight:700">R$<span class="counter" data-target="1415">0</span>k</div>
+        <p style="color:var(--t2);font-size:.85rem;margin-top:6px">Margem Bruta Brandly</p>
       </div>
-      <div class="glass-accent rounded-2xl p-8 text-center glow-border reveal">
-        <div class="counter text-4xl font-heading font-bold gradient-text" data-target="650" data-suffix="">0</div>
-        <p class="text-secondary text-sm mt-2">Creators Ativos no Mes 12</p>
+      <div class="glass-a glow" style="padding:32px;text-align:center;border-radius:16px">
+        <div class="font-h grad" style="font-size:2.2rem;font-weight:700"><span class="counter" data-target="650">0</span></div>
+        <p style="color:var(--t2);font-size:.85rem;margin-top:6px">Creators Ativos Mes 12</p>
       </div>
     </div>
-
-    <!-- Monthly Projection Visual -->
-    <div class="glass rounded-2xl p-6 lg:p-8 reveal">
-      <h3 class="font-heading text-lg mb-6">Projecao Mensal — GMV & Margem</h3>
-      <div class="grid grid-cols-12 gap-1 items-end h-48 mb-4">
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent/60 to-accent/20" style="height:8.8%"></div>
-          <span class="text-[9px] text-tertiary">M1</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent/60 to-accent/30" style="height:14%"></div>
-          <span class="text-[9px] text-tertiary">M2</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent/60 to-accent/30" style="height:20%"></div>
-          <span class="text-[9px] text-tertiary">M3</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent/70 to-accent/30" style="height:26%"></div>
-          <span class="text-[9px] text-tertiary">M4</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent/70 to-accent/40" style="height:33%"></div>
-          <span class="text-[9px] text-tertiary">M5</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent/80 to-accent/40" style="height:41%"></div>
-          <span class="text-[9px] text-tertiary">M6</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent/80 to-accent/50" style="height:49%"></div>
-          <span class="text-[9px] text-tertiary">M7</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent/80 to-accent/50" style="height:58%"></div>
-          <span class="text-[9px] text-tertiary">M8</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent to-accent/60" style="height:68%"></div>
-          <span class="text-[9px] text-tertiary">M9</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent to-accent/60" style="height:78%"></div>
-          <span class="text-[9px] text-tertiary">M10</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent to-[var(--cyan)]/60" style="height:89%"></div>
-          <span class="text-[9px] text-tertiary">M11</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 h-full justify-end">
-          <div class="w-full rounded-t bg-gradient-to-t from-accent to-[var(--cyan)]" style="height:100%"></div>
-          <span class="text-[9px] text-tertiary">M12</span>
-        </div>
+    <div class="glass rv" style="padding:28px">
+      <h3 class="font-h" style="font-size:1.1rem;margin-bottom:20px">Projecao Mensal — GMV</h3>
+      <div style="display:flex;align-items:flex-end;gap:6px;height:180px;margin-bottom:12px">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:9%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M1</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:14%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M2</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:20%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M3</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:26%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M4</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:34%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M5</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:41%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M6</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:50%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M7</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:58%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M8</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:68%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M9</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:78%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M10</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:89%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M11</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div class="bar" style="width:100%;height:100%"></div><span style="font-size:8px;color:var(--t3);margin-top:4px">M12</span></div>
       </div>
-      <div class="flex items-center justify-between text-xs text-tertiary">
-        <span>R$80k GMV</span>
-        <span>R$910k GMV</span>
-      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--t3)"><span>R$80k</span><span>R$910k</span></div>
     </div>
-
-    <!-- Scenarios -->
-    <div class="mt-8 grid md:grid-cols-3 gap-6">
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="text-xs text-secondary uppercase tracking-wider mb-2">Pessimista</div>
-        <div class="text-2xl font-heading font-bold mb-1">300 creators</div>
-        <div class="text-sm text-secondary">GMV R$2,46mi &middot; Margem R$652k</div>
+    <div class="g3 rv" style="margin-top:24px">
+      <div class="glass" style="padding:24px;text-align:center">
+        <div style="font-size:.7rem;color:var(--t2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Pessimista</div>
+        <div class="font-h" style="font-size:1.3rem;font-weight:700">300 creators</div>
+        <div style="font-size:.8rem;color:var(--t2)">GMV R$2,46mi</div>
       </div>
-      <div class="glass-accent rounded-xl p-6 text-center glow-border reveal">
-        <div class="text-xs text-[var(--cyan)] uppercase tracking-wider mb-2">Base</div>
-        <div class="text-2xl font-heading font-bold mb-1">650 creators</div>
-        <div class="text-sm text-secondary">GMV R$5,34mi &middot; Margem R$1,42mi</div>
+      <div class="glass-a glow" style="padding:24px;text-align:center;border-radius:16px">
+        <div style="font-size:.7rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Base</div>
+        <div class="font-h" style="font-size:1.3rem;font-weight:700">650 creators</div>
+        <div style="font-size:.8rem;color:var(--t2)">GMV R$5,34mi</div>
       </div>
-      <div class="glass rounded-xl p-6 text-center reveal">
-        <div class="text-xs text-secondary uppercase tracking-wider mb-2">Otimista</div>
-        <div class="text-2xl font-heading font-bold mb-1">1.000 creators</div>
-        <div class="text-sm text-secondary">GMV R$8,2mi &middot; Margem R$2,17mi</div>
+      <div class="glass" style="padding:24px;text-align:center">
+        <div style="font-size:.7rem;color:var(--t2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Otimista</div>
+        <div class="font-h" style="font-size:1.3rem;font-weight:700">1.000 creators</div>
+        <div style="font-size:.8rem;color:var(--t2)">GMV R$8,2mi</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ ROADMAP ============ -->
-<section class="py-section" id="roadmap">
-  <div class="max-w-4xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label mb-4 block reveal">Roadmap</span>
-      <h2 class="font-heading text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-tight reveal">
-        Plano de <span class="gradient-text">execucao</span>
-      </h2>
+<!-- ===== ROADMAP ===== -->
+<section id="roadmap" class="sec">
+  <div class="wrap" style="max-width:800px">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="label rv" style="display:block;margin-bottom:12px">Roadmap</span>
+      <h2 class="rv" style="font-size:clamp(1.8rem,4.5vw,3rem)">Plano de <span class="grad">execucao</span></h2>
     </div>
-
-    <div class="relative">
-      <div class="timeline-line"></div>
-
-      <div class="space-y-12">
-        <!-- Phase 0 -->
-        <div class="flex gap-8 items-start reveal">
-          <div class="relative flex-shrink-0">
-            <div class="w-12 h-12 rounded-full glass-accent flex items-center justify-center z-10 relative">
-              <span class="text-xs font-bold gradient-text">F0</span>
-            </div>
-          </div>
-          <div class="pt-1">
-            <div class="text-xs text-[var(--cyan)] mb-1">Semanas 1-4</div>
-            <h3 class="text-lg font-semibold mb-2">Pre-Lancamento</h3>
-            <div class="glass rounded-xl p-4 space-y-2">
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Fechar parametros de negocio e margens finais</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Negociar primeiras 5-10 marcas parceiras (margem 50%+)</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Montar Creator Packs para 3 produtos campeoes</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Setup tecnologico minimo (landing, form, pagamento)</p>
-            </div>
-          </div>
+    <div style="position:relative">
+      <div class="tl-line"></div>
+      <div style="display:flex;flex-direction:column;gap:40px">
+        <div class="rv" style="display:flex;gap:24px;align-items:flex-start">
+          <div class="tl-dot glass-a" style="font-size:.7rem;font-weight:700"><span class="grad">F0</span></div>
+          <div><div style="font-size:.75rem;color:var(--cyan);margin-bottom:4px">Semanas 1-4</div><h3 style="font-size:1.1rem;margin-bottom:8px">Pre-Lancamento</h3><div class="glass" style="padding:16px;font-size:.85rem;color:var(--t2);line-height:1.8">Fechar parametros &middot; Negociar 5-10 marcas (50%+) &middot; Creator Packs &middot; Setup tecnologico</div></div>
         </div>
-
-        <!-- Phase 1 -->
-        <div class="flex gap-8 items-start reveal">
-          <div class="relative flex-shrink-0">
-            <div class="w-12 h-12 rounded-full glass-accent flex items-center justify-center z-10 relative">
-              <span class="text-xs font-bold gradient-text">F1</span>
-            </div>
-          </div>
-          <div class="pt-1">
-            <div class="text-xs text-[var(--cyan)] mb-1">Meses 1-2</div>
-            <h3 class="text-lg font-semibold mb-2">Lancamento Soft</h3>
-            <div class="glass rounded-xl p-4 space-y-2">
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Funil DM + Outbound: 100-150 creators</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Webinario "Profissao Creator" 2x/semana</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Primeiro Creator Challenge 7 Dias</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Validar modelo R$100/dia funcionando</p>
-            </div>
-          </div>
+        <div class="rv" style="display:flex;gap:24px;align-items:flex-start">
+          <div class="tl-dot glass-a" style="font-size:.7rem;font-weight:700"><span class="grad">F1</span></div>
+          <div><div style="font-size:.75rem;color:var(--cyan);margin-bottom:4px">Meses 1-2</div><h3 style="font-size:1.1rem;margin-bottom:8px">Lancamento Soft</h3><div class="glass" style="padding:16px;font-size:.85rem;color:var(--t2);line-height:1.8">Funil DM + Outbound: 100-150 creators &middot; Webinario 2x/semana &middot; Challenge 7 Dias &middot; Validar R$100/dia</div></div>
         </div>
-
-        <!-- Phase 2 -->
-        <div class="flex gap-8 items-start reveal">
-          <div class="relative flex-shrink-0">
-            <div class="w-12 h-12 rounded-full glass-accent flex items-center justify-center z-10 relative">
-              <span class="text-xs font-bold gradient-text">F2</span>
-            </div>
-          </div>
-          <div class="pt-1">
-            <div class="text-xs text-[var(--cyan)] mb-1">Meses 3-6</div>
-            <h3 class="text-lg font-semibold mb-2">Crescimento</h3>
-            <div class="glass rounded-xl p-4 space-y-2">
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Lancar app MVP mobile com estudio IA</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Escalar para 15-20 marcas parceiras</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Sistema de afiliados em rede operacional</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Meta: 350 creators ativos, GMV R$375k/mes</p>
-            </div>
-          </div>
+        <div class="rv" style="display:flex;gap:24px;align-items:flex-start">
+          <div class="tl-dot glass-a" style="font-size:.7rem;font-weight:700"><span class="grad">F2</span></div>
+          <div><div style="font-size:.75rem;color:var(--cyan);margin-bottom:4px">Meses 3-6</div><h3 style="font-size:1.1rem;margin-bottom:8px">Crescimento</h3><div class="glass" style="padding:16px;font-size:.85rem;color:var(--t2);line-height:1.8">App MVP mobile &middot; 15-20 marcas &middot; Afiliados em rede &middot; Meta: 350 creators, GMV R$375k/mes</div></div>
         </div>
-
-        <!-- Phase 3 -->
-        <div class="flex gap-8 items-start reveal">
-          <div class="relative flex-shrink-0">
-            <div class="w-12 h-12 rounded-full glass-accent flex items-center justify-center z-10 relative">
-              <span class="text-xs font-bold gradient-text">F3</span>
-            </div>
-          </div>
-          <div class="pt-1">
-            <div class="text-xs text-[var(--cyan)] mb-1">Meses 7-12</div>
-            <h3 class="text-lg font-semibold mb-2">Escala</h3>
-            <div class="glass rounded-xl p-4 space-y-2">
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>IA de edicao automatica + validacao de video</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Gamificacao completa (ranking, missoes, niveis)</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Trafego pago para captacao de creators</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Meta: 650 creators, GMV R$910k/mes</p>
-            </div>
-          </div>
+        <div class="rv" style="display:flex;gap:24px;align-items:flex-start">
+          <div class="tl-dot glass-a" style="font-size:.7rem;font-weight:700"><span class="grad">F3</span></div>
+          <div><div style="font-size:.75rem;color:var(--cyan);margin-bottom:4px">Meses 7-12</div><h3 style="font-size:1.1rem;margin-bottom:8px">Escala</h3><div class="glass" style="padding:16px;font-size:.85rem;color:var(--t2);line-height:1.8">IA edicao + validacao &middot; Gamificacao completa &middot; Trafego pago &middot; Meta: 650 creators, GMV R$910k/mes</div></div>
         </div>
-
-        <!-- Phase 4 -->
-        <div class="flex gap-8 items-start reveal">
-          <div class="relative flex-shrink-0">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-[var(--cyan)] flex items-center justify-center z-10 relative">
-              <span class="text-xs font-bold text-white">F4</span>
-            </div>
-          </div>
-          <div class="pt-1">
-            <div class="text-xs text-[var(--cyan)] mb-1">Ano 2+</div>
-            <h3 class="text-lg font-semibold mb-2">Expansao</h3>
-            <div class="glass rounded-xl p-4 space-y-2">
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>White-label do modelo para empresas</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Infoprodutos co-criados com top creators</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>TikTok Shop como canal principal</p>
-              <p class="text-sm text-secondary flex items-start gap-2"><span class="accent-dot mt-1.5"></span>Meta: 2.500-8.000 creators ativos</p>
-            </div>
-          </div>
+        <div class="rv" style="display:flex;gap:24px;align-items:flex-start">
+          <div class="tl-dot" style="background:linear-gradient(135deg,var(--accent),var(--cyan));font-size:.7rem;font-weight:700;color:#fff">F4</div>
+          <div><div style="font-size:.75rem;color:var(--cyan);margin-bottom:4px">Ano 2+</div><h3 style="font-size:1.1rem;margin-bottom:8px">Expansao</h3><div class="glass" style="padding:16px;font-size:.85rem;color:var(--t2);line-height:1.8">White-label &middot; Infoprodutos co-criados &middot; TikTok Shop &middot; Meta: 2.500-8.000 creators</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
-<section class="py-section relative overflow-hidden" id="cta">
-  <canvas id="cta-canvas" class="absolute inset-0 z-0 pointer-events-none"></canvas>
-  <div class="hero-orb" style="width:600px;height:600px;background:radial-gradient(circle,rgba(29,69,216,0.12),transparent);top:50%;left:50%;transform:translate(-50%,-50%)"></div>
-
-  <div class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
-    <span class="section-label mb-6 inline-block reveal">O futuro comeca agora</span>
-    <h2 class="font-heading text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95] tracking-tight mb-6 reveal">
-      Pronto para construir a <span class="shimmer-text">proxima grande plataforma</span> de creators?
-    </h2>
-    <p class="text-lg text-secondary mb-10 max-w-xl mx-auto reveal">
-      Brandly e onde a influencia vira marca. Junte-se a revolucao da creator economy no Brasil.
-    </p>
-    <div class="flex flex-wrap justify-center gap-4 reveal">
-      <a href="#" class="btn-primary magnetic text-base px-10 py-4">Comecar Agora</a>
-      <a href="#" class="btn-outline magnetic">Baixar Plano Completo</a>
+<!-- ===== CTA ===== -->
+<section id="cta" class="sec" style="position:relative;overflow:hidden">
+  <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(29,69,216,.1),transparent);top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+  <div class="wrap" style="position:relative;z-index:2;text-align:center;max-width:800px">
+    <span class="label rv" style="display:block;margin-bottom:20px">O futuro comeca agora</span>
+    <h2 class="rv" style="font-size:clamp(2rem,5.5vw,3.5rem);line-height:.95;margin-bottom:20px">Pronto para construir a <span class="shimmer">proxima grande plataforma</span> de creators?</h2>
+    <p class="rv" style="color:var(--t2);font-size:1.05rem;max-width:560px;margin:0 auto 32px;line-height:1.7">Brandly e onde a influencia vira marca. Junte-se a revolucao da creator economy no Brasil.</p>
+    <div class="rv" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px">
+      <a href="#" class="btn btn-p" style="font-size:1rem;padding:16px 40px">Comecar Agora</a>
+      <a href="#" class="btn btn-o">Baixar Plano Completo</a>
     </div>
-
-    <div class="mt-16 grid grid-cols-3 gap-8 max-w-md mx-auto reveal">
-      <div class="text-center">
-        <div class="text-2xl font-heading font-bold gradient-text">R$100</div>
-        <div class="text-xs text-secondary mt-1">/dia garantido</div>
-      </div>
-      <div class="text-center">
-        <div class="text-2xl font-heading font-bold gradient-text">30s</div>
-        <div class="text-xs text-secondary mt-1">edicao IA</div>
-      </div>
-      <div class="text-center">
-        <div class="text-2xl font-heading font-bold gradient-text">30</div>
-        <div class="text-xs text-secondary mt-1">dias garantia</div>
-      </div>
+    <div class="rv g3" style="max-width:420px;margin:0 auto">
+      <div style="text-align:center"><div class="font-h grad" style="font-size:1.5rem;font-weight:700">R$100</div><div style="font-size:.7rem;color:var(--t2);margin-top:2px">/dia garantido</div></div>
+      <div style="text-align:center"><div class="font-h grad" style="font-size:1.5rem;font-weight:700">30s</div><div style="font-size:.7rem;color:var(--t2);margin-top:2px">edicao IA</div></div>
+      <div style="text-align:center"><div class="font-h grad" style="font-size:1.5rem;font-weight:700">30</div><div style="font-size:.7rem;color:var(--t2);margin-top:2px">dias garantia</div></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="py-12 border-t border-white/5">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accent-cyan flex items-center justify-center">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h6c3.3 0 6 2.7 6 6s-2.7 6-6 6H4V4z" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
-        </div>
-        <span class="font-heading text-sm font-semibold">Brandly</span>
-      </div>
-      <p class="text-xs text-tertiary">Influencia e atencao. Marca e valor.</p>
-      <p class="text-xs text-tertiary">2026 Brandly. Plano de Negocio v1.0</p>
-    </div>
+<!-- Footer -->
+<footer style="padding:40px 0;border-top:1px solid rgba(255,255,255,.05)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div class="nav-brand" style="font-size:.9rem"><div class="nav-logo" style="width:28px;height:28px;font-size:12px">B</div> Brandly</div>
+    <p style="font-size:.75rem;color:var(--t3)">Influencia e atencao. Marca e valor.</p>
+    <p style="font-size:.75rem;color:var(--t3)">2026 Brandly v1.0</p>
   </div>
 </footer>
 
-<!-- SCRIPTS -->
+<!-- JS: minimal, no external dependencies except GSAP for counters -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
 <script>
 (function(){
-  function initPage() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    gsap.registerPlugin(ScrollTrigger);
-    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Nav scroll
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, {passive:true});
 
-    // ===== PRELOADER =====
-    var loader = document.getElementById('loader');
-    var loaderCounter = document.getElementById('loaderCounter');
-    var loaderBar = document.getElementById('loaderBar');
-    var blinds = document.querySelectorAll('.loader-blind');
-    var preloaderDone = false;
+  // Progress bar
+  var prog = document.getElementById('progress');
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = h > 0 ? (window.scrollY/h*100)+'%' : '0%';
+  }, {passive:true});
 
-    if (loader && !prefersReduced) {
-      var tl = gsap.timeline({
-        onComplete: function() {
-          preloaderDone = true;
-          initHeroAnim();
-        }
-      });
-      tl.to({ val: 0 }, {
-        val: 100, duration: 1.5, ease: 'power2.inOut',
-        onUpdate: function() {
-          var v = Math.round(this.targets()[0].val);
-          if (loaderCounter) loaderCounter.textContent = v;
-          if (loaderBar) loaderBar.style.width = v + '%';
-        }
-      })
-      .to(loader, { opacity: 0, duration: 0.25 }, '+=0.1')
-      .set(loader, { display: 'none' })
-      .to(blinds, { scaleY: 0, transformOrigin: 'top', duration: 0.5, stagger: { each: 0.06, from: 'center' }, ease: 'power4.inOut' }, '-=0.15')
-      .set(document.getElementById('loaderBlinds'), { display: 'none' });
-    } else {
-      if (loader) { loader.style.display = 'none'; document.getElementById('loaderBlinds').style.display = 'none'; }
-      preloaderDone = true;
-      setTimeout(initHeroAnim, 100);
-    }
+  // Hamburger
+  var ham = document.getElementById('hamBtn');
+  var mob = document.getElementById('mobMenu');
+  ham.addEventListener('click', function(){
+    ham.classList.toggle('on');
+    mob.classList.toggle('open');
+  });
+  mob.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      ham.classList.remove('on');
+      mob.classList.remove('open');
+    });
+  });
 
-    // ===== SCROLL PROGRESS (vanilla) =====
-    var progressBar = document.getElementById('scrollProgress');
-    window.addEventListener('scroll', function() {
-      if (!progressBar) return;
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.style.width = h > 0 ? ((window.scrollY / h) * 100) + '%' : '0%';
-    }, { passive: true });
-
-    // ===== NAV SCROLL =====
-    var navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 60) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-    }, { passive: true });
-
-    // ===== HAMBURGER =====
-    var hBtn = document.getElementById('hamburgerBtn');
-    var mMenu = document.getElementById('mobileMenu');
-    if (hBtn && mMenu) {
-      hBtn.addEventListener('click', function() {
-        hBtn.classList.toggle('active');
-        mMenu.classList.toggle('open');
-      });
-      mMenu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          hBtn.classList.remove('active');
-          mMenu.classList.remove('open');
-        });
-      });
-    }
-
-    // ===== HIDE CUSTOM CURSOR =====
-    var cursorEl = document.getElementById('customCursor');
-    if (cursorEl) cursorEl.style.display = 'none';
-
-    // ===== NAVIGATION (native smooth) =====
-    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-      a.addEventListener('click', function(e) {
-        var href = a.getAttribute('href');
-        if (href === '#') return;
+  // Smooth scroll anchors
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var href = a.getAttribute('href');
+      if(href === '#') return;
+      var t = document.querySelector(href);
+      if(t){
         e.preventDefault();
-        var target = document.querySelector(href);
-        if (target) {
-          var top = target.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        }
-      });
+        window.scrollTo({top: t.offsetTop - 80, behavior:'smooth'});
+      }
     });
+  });
 
-    // ===== HERO ANIMATION =====
-    function initHeroAnim() {
-      gsap.timeline()
-        .to('.hero-badge', { opacity: 1, duration: 0.5, ease: 'power3.out' })
-        .from('.hero-line-inner', { y: '110%', duration: 0.8, ease: 'power4.out', stagger: 0.1 }, '-=0.2')
-        .to('.hero-desc', { opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.3')
-        .to('.hero-ctas', { opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.2')
-        .to('.hero-metrics', { opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.1');
-    }
-
-    // ===== SCROLL REVEALS =====
-    gsap.utils.toArray('.reveal').forEach(function(el) {
-      gsap.from(el, {
-        scrollTrigger: { trigger: el, start: 'top 92%', once: true },
-        y: 35, opacity: 0, duration: 0.6, ease: 'power3.out'
-      });
+  // Reveal on scroll (IntersectionObserver - zero dependencies)
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); }
     });
+  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ obs.observe(el); });
 
-    // ===== COUNTERS =====
-    document.querySelectorAll('.counter').forEach(function(counter) {
-      var target = parseInt(counter.dataset.target) || 0;
-      var prefix = counter.dataset.prefix || '';
-      var suffix = counter.dataset.suffix || '';
+  // Counters (GSAP)
+  if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined'){
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.counter').forEach(function(c){
+      var target = parseInt(c.dataset.target)||0;
       ScrollTrigger.create({
-        trigger: counter, start: 'top 88%',
-        onEnter: function() {
-          gsap.to({ val: 0 }, {
-            val: target, duration: 1.8, ease: 'power2.out',
-            onUpdate: function() {
-              counter.textContent = prefix + Math.round(this.targets()[0].val).toLocaleString('pt-BR') + suffix;
-            }
+        trigger:c, start:'top 88%',
+        onEnter:function(){
+          gsap.to({v:0},{v:target, duration:1.8, ease:'power2.out',
+            onUpdate:function(){ c.textContent = Math.round(this.targets()[0].v).toLocaleString('pt-BR'); }
           });
-        }, once: true
+        }, once:true
       });
     });
-
-    // ===== PARALLAX (light) =====
-    if (!prefersReduced) {
-      gsap.utils.toArray('[data-parallax]').forEach(function(el) {
-        var speed = parseFloat(el.dataset.parallax) || -0.3;
-        gsap.to(el, {
-          y: function() { return speed * 150; }, ease: 'none',
-          scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
-        });
-      });
-    }
-
-    // ===== TILT CARDS (CSS only, no GSAP) =====
-    if (window.innerWidth >= 1024 && !prefersReduced) {
-      document.querySelectorAll('.tilt-card').forEach(function(card) {
-        card.addEventListener('mousemove', function(e) {
-          var r = card.getBoundingClientRect();
-          var x = (e.clientX - r.left) / r.width - 0.5;
-          var y = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transform = 'perspective(800px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg)';
-          card.style.setProperty('--shine-x', ((x+0.5)*100) + '%');
-          card.style.setProperty('--shine-y', ((y+0.5)*100) + '%');
-        });
-        card.addEventListener('mouseleave', function() {
-          card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg)';
-        });
-      });
-    }
-
-    // ===== THREE.JS HERO (optimized) =====
-    function init3DHero() {
-      var canvas = document.getElementById('hero-canvas');
-      if (!canvas || typeof THREE === 'undefined' || prefersReduced) return;
-
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-      camera.position.z = 8;
-
-      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: false });
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-
-      var accentColor = new THREE.Color('#1D45D8');
-      var cyanColor = new THREE.Color('#00DFFF');
-      var dimColor = accentColor.clone().multiplyScalar(0.3);
-
-      var meshes = [];
-      var geos = [
-        new THREE.IcosahedronGeometry(1.5, 1),
-        new THREE.TorusGeometry(1.2, 0.3, 6, 20),
-        new THREE.OctahedronGeometry(1, 0),
-      ];
-
-      for (var i = 0; i < 3; i++) {
-        var mat = new THREE.MeshBasicMaterial({
-          color: i % 2 === 0 ? accentColor : cyanColor,
-          wireframe: true, transparent: true, opacity: 0.08,
-        });
-        var mesh = new THREE.Mesh(geos[i], mat);
-        mesh.position.set((Math.random() - 0.5) * 12, (Math.random() - 0.5) * 8, -3 - Math.random() * 4);
-        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
-        mesh.userData = {
-          rx: (Math.random() - 0.5) * 0.003, ry: (Math.random() - 0.5) * 0.003,
-          fs: 0.3 + Math.random() * 0.4, fa: 0.3 + Math.random() * 0.3, iy: mesh.position.y
-        };
-        scene.add(mesh);
-        meshes.push(mesh);
-      }
-
-      var heroVisible = true;
-      var obs = new IntersectionObserver(function(e) { heroVisible = e[0].isIntersecting; }, { threshold: 0 });
-      obs.observe(document.getElementById('hero'));
-
-      function animate() {
-        requestAnimationFrame(animate);
-        if (!heroVisible) return;
-        var t = Date.now() * 0.001;
-        for (var j = 0; j < meshes.length; j++) {
-          var m = meshes[j];
-          m.rotation.x += m.userData.rx;
-          m.rotation.y += m.userData.ry;
-          m.position.y = m.userData.iy + Math.sin(t * m.userData.fs) * m.userData.fa;
-        }
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      window.addEventListener('resize', function() {
-        camera.aspect = canvas.clientWidth / canvas.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      });
-    }
-
-    // ===== CTA PARTICLES (optimized) =====
-    function initCTAParticles() {
-      var canvas = document.getElementById('cta-canvas');
-      if (!canvas || typeof THREE === 'undefined' || prefersReduced) return;
-
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 50);
-      camera.position.z = 5;
-      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-
-      var geo = new THREE.BufferGeometry();
-      var pos = new Float32Array(100 * 3);
-      for (var i = 0; i < 300; i += 3) {
-        pos[i] = (Math.random() - 0.5) * 10;
-        pos[i+1] = (Math.random() - 0.5) * 6;
-        pos[i+2] = (Math.random() - 0.5) * 4 - 2;
-      }
-      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-      var points = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0x1D45D8, size: 0.04, transparent: true, opacity: 0.35 }));
-      scene.add(points);
-
-      var vis = false;
-      var obs2 = new IntersectionObserver(function(e) { vis = e[0].isIntersecting; }, { threshold: 0 });
-      obs2.observe(canvas.closest('section'));
-
-      function animate() {
-        requestAnimationFrame(animate);
-        if (!vis) return;
-        points.rotation.y += 0.0003;
-        renderer.render(scene, camera);
-      }
-      animate();
-    }
-
-    init3DHero();
-    initCTAParticles();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPage);
-  } else {
-    initPage();
   }
 })();
-</script>
-
-<script type="application/ld+json">
-{ "@context": "https://schema.org", "@type": "WebPage", "name": "Brandly", "description": "Plataforma SaaS de creator economy com renda garantida por producao." }
 </script>
 </body>
 </html>
