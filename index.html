@@ -61,7 +61,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body {
       font-family: var(--font-body);
       background: var(--bg-0);
@@ -69,6 +69,8 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+    section[id] { scroll-margin-top: 80px; }
+    section[id] { scroll-margin-top: 80px; }
 
     /* Grain */
     .grain::after {
@@ -1379,8 +1381,6 @@
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/SplitText.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
@@ -1388,331 +1388,256 @@
   function initPage() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ===== PRELOADER =====
-    function initPreloader() {
-      const loader = document.getElementById('loader');
-      const counter = document.getElementById('loaderCounter');
-      const bar = document.getElementById('loaderBar');
-      const blinds = document.querySelectorAll('.loader-blind');
-      if (!loader) return gsap.timeline();
+    var loader = document.getElementById('loader');
+    var loaderCounter = document.getElementById('loaderCounter');
+    var loaderBar = document.getElementById('loaderBar');
+    var blinds = document.querySelectorAll('.loader-blind');
+    var preloaderDone = false;
 
-      const tl = gsap.timeline();
+    if (loader && !prefersReduced) {
+      var tl = gsap.timeline({
+        onComplete: function() {
+          preloaderDone = true;
+          initHeroAnim();
+        }
+      });
       tl.to({ val: 0 }, {
-        val: 100, duration: prefersReduced ? 0.01 : 2, ease: 'power2.inOut',
+        val: 100, duration: 1.5, ease: 'power2.inOut',
         onUpdate: function() {
-          const v = Math.round(this.targets()[0].val);
-          if (counter) counter.textContent = v;
-          if (bar) bar.style.width = v + '%';
+          var v = Math.round(this.targets()[0].val);
+          if (loaderCounter) loaderCounter.textContent = v;
+          if (loaderBar) loaderBar.style.width = v + '%';
         }
       })
-      .to(loader, { opacity: 0, duration: 0.3, ease: 'power2.in' }, '+=0.2')
+      .to(loader, { opacity: 0, duration: 0.25 }, '+=0.1')
       .set(loader, { display: 'none' })
-      .to(blinds, {
-        scaleY: 0, transformOrigin: 'top', duration: 0.7,
-        stagger: { each: 0.08, from: 'center' }, ease: 'power4.inOut'
-      }, '-=0.2')
+      .to(blinds, { scaleY: 0, transformOrigin: 'top', duration: 0.5, stagger: { each: 0.06, from: 'center' }, ease: 'power4.inOut' }, '-=0.15')
       .set(document.getElementById('loaderBlinds'), { display: 'none' });
-      return tl;
+    } else {
+      if (loader) { loader.style.display = 'none'; document.getElementById('loaderBlinds').style.display = 'none'; }
+      preloaderDone = true;
+      setTimeout(initHeroAnim, 100);
     }
 
-    // ===== LENIS SMOOTH SCROLL =====
-    let lenis;
-    if (!prefersReduced) {
-      lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
-    }
+    // ===== SCROLL PROGRESS (vanilla) =====
+    var progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', function() {
+      if (!progressBar) return;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = h > 0 ? ((window.scrollY / h) * 100) + '%' : '0%';
+    }, { passive: true });
 
-    // ===== SCROLL PROGRESS =====
-    const progressBar = document.getElementById('scrollProgress');
-    if (progressBar) {
-      ScrollTrigger.create({
-        onUpdate: self => { progressBar.style.width = (self.progress * 100) + '%'; },
-        start: 'top top', end: 'bottom bottom', scrub: 0
+    // ===== NAV SCROLL =====
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    }, { passive: true });
+
+    // ===== HAMBURGER =====
+    var hBtn = document.getElementById('hamburgerBtn');
+    var mMenu = document.getElementById('mobileMenu');
+    if (hBtn && mMenu) {
+      hBtn.addEventListener('click', function() {
+        hBtn.classList.toggle('active');
+        mMenu.classList.toggle('open');
+      });
+      mMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          hBtn.classList.remove('active');
+          mMenu.classList.remove('open');
+        });
       });
     }
 
-    // ===== NAV =====
-    const navbar = document.getElementById('navbar');
-    ScrollTrigger.create({
-      start: 50, onUpdate: self => {
-        if (self.scroll() > 50) navbar.classList.add('scrolled');
-        else navbar.classList.remove('scrolled');
-      }
+    // ===== HIDE CUSTOM CURSOR =====
+    var cursorEl = document.getElementById('customCursor');
+    if (cursorEl) cursorEl.style.display = 'none';
+
+    // ===== NAVIGATION (native smooth) =====
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var href = a.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) {
+          var top = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
     });
 
-    // Hamburger
-    const hamburger = document.getElementById('hamburgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (hamburger && mobileMenu) {
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        mobileMenu.classList.toggle('open');
+    // ===== HERO ANIMATION =====
+    function initHeroAnim() {
+      gsap.timeline()
+        .to('.hero-badge', { opacity: 1, duration: 0.5, ease: 'power3.out' })
+        .from('.hero-line-inner', { y: '110%', duration: 0.8, ease: 'power4.out', stagger: 0.1 }, '-=0.2')
+        .to('.hero-desc', { opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.3')
+        .to('.hero-ctas', { opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.2')
+        .to('.hero-metrics', { opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.1');
+    }
+
+    // ===== SCROLL REVEALS =====
+    gsap.utils.toArray('.reveal').forEach(function(el) {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+        y: 35, opacity: 0, duration: 0.6, ease: 'power3.out'
       });
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          hamburger.classList.remove('active');
-          mobileMenu.classList.remove('open');
+    });
+
+    // ===== COUNTERS =====
+    document.querySelectorAll('.counter').forEach(function(counter) {
+      var target = parseInt(counter.dataset.target) || 0;
+      var prefix = counter.dataset.prefix || '';
+      var suffix = counter.dataset.suffix || '';
+      ScrollTrigger.create({
+        trigger: counter, start: 'top 88%',
+        onEnter: function() {
+          gsap.to({ val: 0 }, {
+            val: target, duration: 1.8, ease: 'power2.out',
+            onUpdate: function() {
+              counter.textContent = prefix + Math.round(this.targets()[0].val).toLocaleString('pt-BR') + suffix;
+            }
+          });
+        }, once: true
+      });
+    });
+
+    // ===== PARALLAX (light) =====
+    if (!prefersReduced) {
+      gsap.utils.toArray('[data-parallax]').forEach(function(el) {
+        var speed = parseFloat(el.dataset.parallax) || -0.3;
+        gsap.to(el, {
+          y: function() { return speed * 150; }, ease: 'none',
+          scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
         });
       });
     }
 
-    // ===== CUSTOM CURSOR =====
-    const cursor = document.getElementById('customCursor');
-    if (cursor && window.innerWidth > 768 && !prefersReduced) {
-      const dot = cursor.querySelector('.cursor-dot');
-      const ring = cursor.querySelector('.cursor-ring');
-      let cx = 0, cy = 0, mx = 0, my = 0;
-      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-      gsap.ticker.add(() => {
-        cx += (mx - cx) * 0.15; cy += (my - cy) * 0.15;
-        gsap.set(dot, { x: mx - 4, y: my - 4 });
-        gsap.set(ring, { x: cx - 4, y: cy - 4 });
+    // ===== TILT CARDS (CSS only, no GSAP) =====
+    if (window.innerWidth >= 1024 && !prefersReduced) {
+      document.querySelectorAll('.tilt-card').forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+          var r = card.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = 'perspective(800px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg)';
+          card.style.setProperty('--shine-x', ((x+0.5)*100) + '%');
+          card.style.setProperty('--shine-y', ((y+0.5)*100) + '%');
+        });
+        card.addEventListener('mouseleave', function() {
+          card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg)';
+        });
       });
-      document.querySelectorAll('a, button, .magnetic, .tilt-card').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
-      });
-      document.body.style.cursor = 'none';
-    } else if (cursor) { cursor.style.display = 'none'; }
+    }
 
-    // ===== THREE.JS HERO =====
+    // ===== THREE.JS HERO (optimized) =====
     function init3DHero() {
-      const canvas = document.getElementById('hero-canvas');
+      var canvas = document.getElementById('hero-canvas');
       if (!canvas || typeof THREE === 'undefined' || prefersReduced) return;
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
       camera.position.z = 8;
 
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: false });
       renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-      const accentColor = new THREE.Color('#1D45D8');
-      const cyanColor = new THREE.Color('#00DFFF');
-      const dimColor = accentColor.clone().multiplyScalar(0.3);
+      var accentColor = new THREE.Color('#1D45D8');
+      var cyanColor = new THREE.Color('#00DFFF');
+      var dimColor = accentColor.clone().multiplyScalar(0.3);
 
-      const meshes = [];
-      const geometries = [
+      var meshes = [];
+      var geos = [
         new THREE.IcosahedronGeometry(1.5, 1),
-        new THREE.TorusGeometry(1.2, 0.3, 8, 32),
+        new THREE.TorusGeometry(1.2, 0.3, 6, 20),
         new THREE.OctahedronGeometry(1, 0),
-        new THREE.TorusKnotGeometry(0.8, 0.3, 48, 8),
-        new THREE.DodecahedronGeometry(1, 0),
       ];
 
-      for (let i = 0; i < 6; i++) {
-        const geo = geometries[i % geometries.length];
-        const mat = new THREE.MeshStandardMaterial({
-          color: dimColor, emissive: i % 2 === 0 ? accentColor : cyanColor,
-          emissiveIntensity: 0.12, wireframe: true, transparent: true, opacity: 0.1,
+      for (var i = 0; i < 3; i++) {
+        var mat = new THREE.MeshBasicMaterial({
+          color: i % 2 === 0 ? accentColor : cyanColor,
+          wireframe: true, transparent: true, opacity: 0.08,
         });
-        const mesh = new THREE.Mesh(geo, mat);
-        mesh.position.set((Math.random() - 0.5) * 14, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 6 - 3);
+        var mesh = new THREE.Mesh(geos[i], mat);
+        mesh.position.set((Math.random() - 0.5) * 12, (Math.random() - 0.5) * 8, -3 - Math.random() * 4);
         mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
         mesh.userData = {
-          rotSpeed: { x: (Math.random() - 0.5) * 0.004, y: (Math.random() - 0.5) * 0.004 },
-          floatSpeed: 0.3 + Math.random() * 0.5,
-          floatAmp: 0.3 + Math.random() * 0.4,
-          initY: mesh.position.y,
+          rx: (Math.random() - 0.5) * 0.003, ry: (Math.random() - 0.5) * 0.003,
+          fs: 0.3 + Math.random() * 0.4, fa: 0.3 + Math.random() * 0.3, iy: mesh.position.y
         };
         scene.add(mesh);
         meshes.push(mesh);
       }
 
-      scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-      const dirLight = new THREE.DirectionalLight(0x1D45D8, 0.5);
-      dirLight.position.set(5, 5, 5);
-      scene.add(dirLight);
-      const dirLight2 = new THREE.DirectionalLight(0x00DFFF, 0.3);
-      dirLight2.position.set(-5, -3, 5);
-      scene.add(dirLight2);
-
-      let mouseX = 0, mouseY = 0;
-      document.addEventListener('mousemove', e => {
-        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-      });
+      var heroVisible = true;
+      var obs = new IntersectionObserver(function(e) { heroVisible = e[0].isIntersecting; }, { threshold: 0 });
+      obs.observe(document.getElementById('hero'));
 
       function animate() {
         requestAnimationFrame(animate);
-        const t = Date.now() * 0.001;
-        meshes.forEach(m => {
-          m.rotation.x += m.userData.rotSpeed.x;
-          m.rotation.y += m.userData.rotSpeed.y;
-          m.position.y = m.userData.initY + Math.sin(t * m.userData.floatSpeed) * m.userData.floatAmp;
-        });
-        camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.02;
-        camera.position.y += (-mouseY * 0.3 - camera.position.y) * 0.02;
-        camera.lookAt(scene.position);
+        if (!heroVisible) return;
+        var t = Date.now() * 0.001;
+        for (var j = 0; j < meshes.length; j++) {
+          var m = meshes[j];
+          m.rotation.x += m.userData.rx;
+          m.rotation.y += m.userData.ry;
+          m.position.y = m.userData.iy + Math.sin(t * m.userData.fs) * m.userData.fa;
+        }
         renderer.render(scene, camera);
       }
       animate();
 
-      window.addEventListener('resize', () => {
+      window.addEventListener('resize', function() {
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(canvas.clientWidth, canvas.clientHeight);
       });
     }
 
-    // ===== CTA PARTICLES =====
-    function initParticleCloud(canvasId) {
-      const canvas = document.getElementById(canvasId);
+    // ===== CTA PARTICLES (optimized) =====
+    function initCTAParticles() {
+      var canvas = document.getElementById('cta-canvas');
       if (!canvas || typeof THREE === 'undefined' || prefersReduced) return;
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 50);
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 50);
       camera.position.z = 5;
-
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
       renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-      const geo = new THREE.BufferGeometry();
-      const count = 200;
-      const pos = new Float32Array(count * 3);
-      for (let i = 0; i < count * 3; i += 3) {
-        pos[i] = (Math.random() - 0.5) * 12;
-        pos[i+1] = (Math.random() - 0.5) * 7;
-        pos[i+2] = (Math.random() - 0.5) * 5 - 2;
+      var geo = new THREE.BufferGeometry();
+      var pos = new Float32Array(100 * 3);
+      for (var i = 0; i < 300; i += 3) {
+        pos[i] = (Math.random() - 0.5) * 10;
+        pos[i+1] = (Math.random() - 0.5) * 6;
+        pos[i+2] = (Math.random() - 0.5) * 4 - 2;
       }
       geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-      const mat = new THREE.PointsMaterial({ color: 0x1D45D8, size: 0.03, transparent: true, opacity: 0.4 });
-      const points = new THREE.Points(geo, mat);
+      var points = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0x1D45D8, size: 0.04, transparent: true, opacity: 0.35 }));
       scene.add(points);
+
+      var vis = false;
+      var obs2 = new IntersectionObserver(function(e) { vis = e[0].isIntersecting; }, { threshold: 0 });
+      obs2.observe(canvas.closest('section'));
 
       function animate() {
         requestAnimationFrame(animate);
-        points.rotation.y += 0.0004;
-        points.rotation.x += 0.0002;
+        if (!vis) return;
+        points.rotation.y += 0.0003;
         renderer.render(scene, camera);
       }
       animate();
-
-      window.addEventListener('resize', () => {
-        camera.aspect = canvas.clientWidth / canvas.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      });
     }
-
-    // ===== HERO ANIMATION =====
-    function initHeroAnimation() {
-      const tl = gsap.timeline({ delay: prefersReduced ? 0 : 2.5 });
-      tl.to('.hero-badge', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
-        .from('.hero-line-inner', { y: '110%', duration: 0.9, ease: 'power4.out', stagger: 0.12 }, '-=0.3')
-        .to('.hero-desc', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-        .to('.hero-ctas', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-        .to('.hero-metrics', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.2');
-    }
-
-    // ===== SCROLL REVEALS =====
-    function initScrollReveals() {
-      gsap.utils.toArray('.reveal').forEach(el => {
-        gsap.from(el, {
-          scrollTrigger: { trigger: el, start: 'top 88%' },
-          y: 50, opacity: 0, duration: 0.8, ease: 'power3.out'
-        });
-      });
-    }
-
-    // ===== COUNTERS =====
-    function initCounters() {
-      document.querySelectorAll('.counter').forEach(counter => {
-        const target = parseInt(counter.dataset.target) || 0;
-        const prefix = counter.dataset.prefix || '';
-        const suffix = counter.dataset.suffix || '';
-        ScrollTrigger.create({
-          trigger: counter, start: 'top 85%',
-          onEnter: () => {
-            gsap.to({ val: 0 }, {
-              val: target, duration: 2, ease: 'power2.out',
-              onUpdate: function() {
-                counter.textContent = prefix + Math.round(this.targets()[0].val).toLocaleString('pt-BR') + suffix;
-              }
-            });
-          }, once: true
-        });
-      });
-    }
-
-    // ===== PARALLAX =====
-    function initParallax() {
-      if (prefersReduced) return;
-      gsap.utils.toArray('[data-parallax]').forEach(el => {
-        const speed = parseFloat(el.dataset.parallax) || -0.3;
-        gsap.to(el, {
-          y: () => speed * 300, ease: 'none',
-          scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.5 }
-        });
-      });
-    }
-
-    // ===== TILT CARDS =====
-    function initTiltCards() {
-      if (window.innerWidth < 768 || prefersReduced) return;
-      document.querySelectorAll('.tilt-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5;
-          const y = (e.clientY - r.top) / r.height - 0.5;
-          gsap.to(card, { rotateY: x * 10, rotateX: -y * 10, duration: 0.4, ease: 'power2.out', transformPerspective: 800 });
-          card.style.setProperty('--shine-x', `${(x+0.5)*100}%`);
-          card.style.setProperty('--shine-y', `${(y+0.5)*100}%`);
-        });
-        card.addEventListener('mouseleave', () => {
-          gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'power3.out' });
-        });
-      });
-    }
-
-    // ===== MAGNETIC BUTTONS =====
-    function initMagnetic() {
-      if (window.innerWidth < 768 || prefersReduced) return;
-      document.querySelectorAll('.magnetic').forEach(btn => {
-        btn.addEventListener('mousemove', e => {
-          const r = btn.getBoundingClientRect();
-          const dx = e.clientX - r.left - r.width / 2;
-          const dy = e.clientY - r.top - r.height / 2;
-          gsap.to(btn, { x: dx * 0.25, y: dy * 0.25, duration: 0.3, ease: 'power2.out' });
-        });
-        btn.addEventListener('mouseleave', () => {
-          gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1,0.3)' });
-        });
-      });
-    }
-
-    // ===== ANCHOR SMOOTH =====
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          if (lenis) lenis.scrollTo(target, { offset: -80 });
-          else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // ===== INIT SEQUENCE =====
-    const preloaderTl = initPreloader();
-    preloaderTl.then ? preloaderTl.then(initHeroAnimation) : setTimeout(initHeroAnimation, prefersReduced ? 0 : 2600);
 
     init3DHero();
-    initParticleCloud('cta-canvas');
-    initScrollReveals();
-    initCounters();
-    initParallax();
-    initTiltCards();
-    initMagnetic();
+    initCTAParticles();
   }
 
   if (document.readyState === 'loading') {
@@ -1721,7 +1646,7 @@
     initPage();
   }
 })();
-</script>
+
 
 <script type="application/ld+json">
 { "@context": "https://schema.org", "@type": "WebPage", "name": "Brandly", "description": "Plataforma SaaS de creator economy com renda garantida por producao." }
